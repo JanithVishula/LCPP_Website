@@ -14,14 +14,18 @@
     "bcryptjs": "^2.4.3",
     "csv-parser": "^3.2.0",
     "mongodb": "^6.3.0",
+    "multer": "^2.0.2",
     "next": "^15.1.6",
     "next-auth": "^4.24.7",
+    "openai": "^6.15.0",
+    "pdf-parse": "^2.4.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
+    "@types/pdf-parse": "^1.1.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
