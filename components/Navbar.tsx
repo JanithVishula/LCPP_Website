@@ -2,9 +2,11 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { useSession, signOut } from 'next-auth/react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session, status } = useSession();
 
   return (
     <nav className="bg-gradient-to-r from-primary via-primary-dark to-primary text-white shadow-2xl fixed top-0 left-0 right-0 z-[100] backdrop-blur-sm border-b-4 border-gold">
@@ -83,9 +85,32 @@ export default function Navbar() {
             <Link href="/join" className="px-4 py-2 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 font-semibold">
               Join/Donate
             </Link>
-            <Link href="/login" className="bg-gold text-primary hover:bg-gold-dark hover:text-white px-6 py-2 rounded-lg transition-all duration-300 font-bold shadow-lg ml-2">
-              Member Login
-            </Link>
+            
+            {/* User Menu - Shows name if logged in */}
+            {status === 'authenticated' && session?.user ? (
+              <div className="relative group">
+                <Link href="/dashboard" className="bg-gold text-primary hover:bg-gold-dark hover:text-white px-6 py-2 rounded-lg transition-all duration-300 font-bold shadow-lg ml-2 flex items-center gap-2">
+                  👤 {session.user.name}
+                </Link>
+                <div className="absolute top-full right-0 pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
+                  <div className="bg-white text-primary rounded-lg shadow-xl py-2 min-w-[180px]">
+                    <Link href="/dashboard" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
+                      📊 Dashboard
+                    </Link>
+                    <button 
+                      onClick={() => signOut({ callbackUrl: '/' })}
+                      className="w-full text-left block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300"
+                    >
+                      🚪 Logout
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link href="/login" className="bg-gold text-primary hover:bg-gold-dark hover:text-white px-6 py-2 rounded-lg transition-all duration-300 font-bold shadow-lg ml-2">
+                Member Login
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -121,9 +146,25 @@ export default function Navbar() {
             <Link href="/join" className="block py-2 px-4 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 font-semibold">
               Join/Donate
             </Link>
-            <Link href="/login" className="block py-2 mt-2 bg-white text-primary hover:bg-primary-light hover:text-white px-4 rounded-lg transition-all duration-300 font-bold shadow-lg">
-              Member Login
-            </Link>
+            
+            {/* Mobile User Menu */}
+            {status === 'authenticated' && session?.user ? (
+              <>
+                <Link href="/dashboard" className="block py-2 mt-2 bg-gold text-primary hover:bg-gold-dark hover:text-white px-4 rounded-lg transition-all duration-300 font-bold shadow-lg">
+                  👤 {session.user.name}
+                </Link>
+                <button 
+                  onClick={() => signOut({ callbackUrl: '/' })}
+                  className="w-full text-left block py-2 px-4 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 font-semibold"
+                >
+                  🚪 Logout
+                </button>
+              </>
+            ) : (
+              <Link href="/login" className="block py-2 mt-2 bg-white text-primary hover:bg-primary-light hover:text-white px-4 rounded-lg transition-all duration-300 font-bold shadow-lg">
+                Member Login
+              </Link>
+            )}
           </div>
         )}
       </div>

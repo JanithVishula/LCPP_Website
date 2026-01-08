@@ -2,18 +2,66 @@
 
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+interface UserStats {
+  user: {
+    name: string;
+    email: string;
+    role: string;
+    membershipNumber: string;
+    joinedDate: string;
+    phone: string;
+  };
+  stats: {
+    projectsParticipated: number;
+    serviceHours: number;
+    eventsAttended: number;
+    monthsMember: number;
+  };
+  upcomingEvents: Array<{
+    title: string;
+    date: string;
+    location: string;
+    time: string;
+  }>;
+  recentActivities: Array<{
+    title: string;
+    date: string;
+    type: string;
+    hours: number;
+  }>;
+}
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
+  const [stats, setStats] = useState<UserStats | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (status === 'unauthenticated') {
       redirect('/login');
     }
+    if (status === 'authenticated') {
+      fetchStats();
+    }
   }, [status]);
 
-  if (status === 'loading') {
+  const fetchStats = async () => {
+    try {
+      const response = await fetch('/api/user/stats');
+      if (response.ok) {
+        const data = await response.json();
+        setStats(data);
+      }
+    } catch (error) {
+      console.error('Error fetching stats:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (status === 'loading' || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
@@ -24,7 +72,7 @@ export default function DashboardPage() {
     );
   }
 
-  if (!session) {
+  if (!session || !stats) {
     return null;
   }
 
@@ -34,55 +82,43 @@ export default function DashboardPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="bg-gradient-to-r from-primary to-primary-light text-white rounded-2xl p-8 mb-8 shadow-xl">
-            <h1 className="text-4xl font-bold mb-2">Welcome back, {session.user?.name}!</h1>
+            <h1 className="text-4xl font-bold mb-2">Welcome back, {stats.user.name}!</h1>
             <p className="text-xl text-gold">Member Dashboard</p>
+            <div className="mt-4 flex flex-wrap gap-4 text-sm">
+              <span className="bg-white/20 px-3 py-1 rounded-full">
+                📧 {stats.user.email}
+              </span>
+              <span className="bg-white/20 px-3 py-1 rounded-full">
+                🎫 {stats.user.membershipNumber}
+              </span>
+              <span className="bg-white/20 px-3 py-1 rounded-full capitalize">
+                👤 {stats.user.role}
+              </span>
+            </div>
           </div>
 
           {/* Stats Grid */}
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="grid md:grid-cols-4 gap-6 mb-8">
             <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-6 text-center">
-              <div className="text-4xl font-bold text-primary mb-2">12</div>
+              <div className="text-4xl font-bold text-primary mb-2">{stats.stats.projectsParticipated}</div>
               <p className="text-primary font-semibold">Projects Participated</p>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-6 text-center">
-              <div className="text-4xl font-bold text-primary mb-2">45</div>
+              <div className="text-4xl font-bold text-primary mb-2">{stats.stats.serviceHours}</div>
               <p className="text-primary font-semibold">Service Hours</p>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-6 text-center">
-              <div className="text-4xl font-bold text-primary mb-2">Gold</div>
-              <p className="text-primary font-semibold">Member Status</p>
+              <div className="text-4xl font-bold text-primary mb-2">{stats.stats.eventsAttended}</div>
+              <p className="text-primary font-semibold">Events Attended</p>
+            </div>
+            <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-6 text-center">
+              <div className="text-4xl font-bold text-primary mb-2">{stats.stats.monthsMember}</div>
+              <p className="text-primary font-semibold">Months as Member</p>
             </div>
           </div>
 
           {/* Content Sections */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Profile */}
-            <div className="bg-white border-2 border-primary rounded-xl p-6">
-              <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2">
-                <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center">
-                  <span className="text-primary text-xl">👤</span>
-                </div>
-                Your Profile
-              </h2>
-              <div className="space-y-3">
-                <div>
-                  <p className="text-sm text-gray-600">Name</p>
-                  <p className="text-primary font-semibold">{session.user?.name}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">Email</p>
-                  <p className="text-primary font-semibold">{session.user?.email}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">Role</p>
-                  <p className="text-primary font-semibold capitalize">{session.user?.role}</p>
-                </div>
-                <button className="w-full bg-gold text-primary hover:bg-gold-dark font-bold py-2 px-4 rounded-lg transition-all duration-300 mt-4">
-                  Edit Profile
-                </button>
-              </div>
-            </div>
-
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
             {/* Upcoming Events */}
             <div className="bg-white border-2 border-primary rounded-xl p-6">
               <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2">
@@ -92,52 +128,56 @@ export default function DashboardPage() {
                 Upcoming Events
               </h2>
               <div className="space-y-4">
-                <div className="border-l-4 border-gold pl-4 py-2">
-                  <p className="font-semibold text-primary">Monthly Meeting</p>
-                  <p className="text-sm text-gray-600">Jan 15, 2026 - 6:00 PM</p>
+                {stats.upcomingEvents.map((event, index) => (
+                  <div key={index} className="border-l-4 border-gold pl-4 py-2">
+                    <h3 className="font-bold text-primary">{event.title}</h3>
+                    <p className="text-sm text-gray-600">📍 {event.location}</p>
+                    <p className="text-sm text-gray-600">
+                      🕐 {new Date(event.date).toLocaleDateString()} at {event.time}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Recent Activities */}
+            <div className="bg-white border-2 border-primary rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2">
+                <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center">
+                  <span className="text-primary text-xl">🏆</span>
                 </div>
-                <div className="border-l-4 border-primary pl-4 py-2">
-                  <p className="font-semibold text-primary">Community Clean-Up</p>
-                  <p className="text-sm text-gray-600">Jan 22, 2026 - 8:00 AM</p>
-                </div>
-                <div className="border-l-4 border-primary pl-4 py-2">
-                  <p className="font-semibold text-primary">Leadership Workshop</p>
-                  <p className="text-sm text-gray-600">Jan 29, 2026 - 2:00 PM</p>
-                </div>
+                Recent Activities
+              </h2>
+              <div className="space-y-4">
+                {stats.recentActivities.map((activity, index) => (
+                  <div key={index} className="border-l-4 border-primary pl-4 py-2">
+                    <h3 className="font-bold text-primary">{activity.title}</h3>
+                    <p className="text-sm text-gray-600">🏷️ {activity.type}</p>
+                    <p className="text-sm text-gray-600">
+                      📆 {new Date(activity.date).toLocaleDateString()} • ⏱️ {activity.hours} hours
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Recent Activity */}
-          <div className="mt-6 bg-white border-2 border-primary rounded-xl p-6">
-            <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2">
-              <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center">
-                <span className="text-primary text-xl">📊</span>
-              </div>
-              Recent Activity
-            </h2>
-            <div className="space-y-3">
-              <div className="flex items-center gap-4 p-3 bg-blue-50 rounded-lg">
-                <div className="text-2xl">✅</div>
-                <div className="flex-1">
-                  <p className="text-primary font-semibold">Attended Tree Plantation Drive</p>
-                  <p className="text-sm text-gray-600">2 days ago</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 p-3 bg-blue-50 rounded-lg">
-                <div className="text-2xl">📚</div>
-                <div className="flex-1">
-                  <p className="text-primary font-semibold">Completed Leadership Training</p>
-                  <p className="text-sm text-gray-600">1 week ago</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 p-3 bg-blue-50 rounded-lg">
-                <div className="text-2xl">🤝</div>
-                <div className="flex-1">
-                  <p className="text-primary font-semibold">Volunteered at Food Drive</p>
-                  <p className="text-sm text-gray-600">2 weeks ago</p>
-                </div>
-              </div>
+          {/* Quick Actions */}
+          <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-6">
+            <h2 className="text-2xl font-bold text-primary mb-4">Quick Actions</h2>
+            <div className="grid md:grid-cols-4 gap-4">
+              <button className="bg-primary text-white hover:bg-primary-light font-bold py-3 px-4 rounded-lg transition-all duration-300">
+                📋 View Projects
+              </button>
+              <button className="bg-gold text-primary hover:bg-gold-dark font-bold py-3 px-4 rounded-lg transition-all duration-300">
+                ✏️ Log Hours
+              </button>
+              <button className="bg-primary text-white hover:bg-primary-light font-bold py-3 px-4 rounded-lg transition-all duration-300">
+                📸 Upload Photos
+              </button>
+              <button className="bg-gold text-primary hover:bg-gold-dark font-bold py-3 px-4 rounded-lg transition-all duration-300">
+                💬 Contact Admin
+              </button>
             </div>
           </div>
         </div>

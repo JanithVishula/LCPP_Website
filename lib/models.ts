@@ -9,6 +9,19 @@ export interface User {
   role: 'member' | 'admin' | 'officer';
   membershipNumber?: string;
   phone?: string;
+  memberID?: string;
+  firstName?: string;
+  lastName?: string;
+  address?: {
+    line1?: string;
+    line2?: string;
+    line3?: string;
+    city?: string;
+    state?: string;
+    postalCode?: string;
+    country?: string;
+  };
+  membershipType?: string;
   joinedDate: Date;
   active: boolean;
   createdAt: Date;
