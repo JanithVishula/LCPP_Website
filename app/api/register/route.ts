@@ -1,10 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import { createUser } from '@/lib/userService';
 
 export async function POST(request: NextRequest) {
   try {
+    const session = await getServerSession(authOptions);
+    
+    // Only admin and officers can create accounts
+    if (!session || (session.user.role !== 'admin' && session.user.role !== 'officer')) {
+      return NextResponse.json(
+        { error: 'Unauthorized - Only admin and officers can create accounts' },
+        { status: 401 }
+      );
+    }
+
     const body = await request.json();
-    const { name, email, password, phone, membershipNumber } = body;
+    const { name, email, password, phone, membershipNumber, role } = body;
 
     // Validation
     if (!name || !email || !password) {
@@ -21,13 +33,31 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Officers cannot create admin or officer accounts
+    if (session.user.role === 'officer') {
+      if (role && role !== 'member') {
+        return NextResponse.json(
+          { error: 'Officers can only create member accounts' },
+          { status: 403 }
+        );
+      }
+    }
+
+    // Only admin can create admin/officer accounts
+    let userRole = 'member';
+    if (role && session.user.role === 'admin') {
+      if (['admin', 'officer', 'member'].includes(role)) {
+        userRole = role;
+      }
+    }
+
     const user = await createUser({
       name,
       email,
       password,
       phone: phone || '',
       membershipNumber: membershipNumber || '',
-      role: 'member',
+      role: userRole,
       joinedDate: new Date(),
       active: true,
     });

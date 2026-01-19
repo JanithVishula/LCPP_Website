@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AuthProvider from "@/components/AuthProvider";
+import AccessibilityControls from "@/components/AccessibilityControls";
 
 const parisish = localFont({
   src: "../public/Parisish-EEoW.ttf",
@@ -32,10 +33,11 @@ export default function RootLayout({
       <body className={`${lora.variable} ${parisish.variable} ${lora.className}`}>
         <AuthProvider>
           <Navbar />
-          <main className="min-h-screen pt-20">
+          <main className="min-h-screen pt-20 relative z-10">
             {children}
           </main>
           <Footer />
+          <AccessibilityControls />
         </AuthProvider>
       </body>
     </html>

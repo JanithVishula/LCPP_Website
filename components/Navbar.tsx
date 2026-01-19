@@ -114,6 +114,9 @@ export default function Navbar() {
                     <Link href="/service-hours" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
                       ⏱ Service Hours
                     </Link>
+                    <Link href="/suggestions/create" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
+                      💡 Suggest Project
+                    </Link>
                     <Link href="/announcements" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
                       📢 Announcements
                     </Link>

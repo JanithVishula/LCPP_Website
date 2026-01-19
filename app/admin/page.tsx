@@ -121,64 +121,7 @@ export default function AdminPage() {
           </div>
         </div>
 
-        {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Link
-            href="/events/create"
-            className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
-          >
-            <div className="text-4xl mb-4">📅</div>
-            <h3 className="text-xl font-bold text-primary mb-2">Create Event</h3>
-            <p className="text-gray-600">Schedule a new club event or meeting</p>
-          </Link>
 
-          <Link
-            href="/announcements/create"
-            className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
-          >
-            <div className="text-4xl mb-4">📢</div>
-            <h3 className="text-xl font-bold text-primary mb-2">New Announcement</h3>
-            <p className="text-gray-600">Post an announcement for members</p>
-          </Link>
-
-          <Link
-            href="/service-hours/approve"
-            className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
-          >
-            <div className="text-4xl mb-4">✅</div>
-            <h3 className="text-xl font-bold text-primary mb-2">Approve Hours</h3>
-            <p className="text-gray-600">
-              Review service hour submissions ({stats.pendingServiceHours} pending)
-            </p>
-          </Link>
-
-          <Link
-            href="/minutes/create"
-            className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
-          >
-            <div className="text-4xl mb-4">📝</div>
-            <h3 className="text-xl font-bold text-primary mb-2">Add Minutes</h3>
-            <p className="text-gray-600">Upload meeting minutes and notes</p>
-          </Link>
-
-          <Link
-            href="/members"
-            className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
-          >
-            <div className="text-4xl mb-4">👥</div>
-            <h3 className="text-xl font-bold text-primary mb-2">Manage Members</h3>
-            <p className="text-gray-600">View and manage club members</p>
-          </Link>
-
-          <Link
-            href="/service-hours/leaderboard"
-            className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
-          >
-            <div className="text-4xl mb-4">🏆</div>
-            <h3 className="text-xl font-bold text-primary mb-2">Leaderboard</h3>
-            <p className="text-gray-600">View top contributors</p>
-          </Link>
-        </div>
       </div>
     </div>
   );

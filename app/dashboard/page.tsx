@@ -161,25 +161,6 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
-
-          {/* Quick Actions */}
-          <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-6">
-            <h2 className="text-2xl font-bold text-primary mb-4">Quick Actions</h2>
-            <div className="grid md:grid-cols-4 gap-4">
-              <button className="bg-primary text-white hover:bg-primary-light font-bold py-3 px-4 rounded-lg transition-all duration-300">
-                📋 View Projects
-              </button>
-              <button className="bg-gold text-primary hover:bg-gold-dark font-bold py-3 px-4 rounded-lg transition-all duration-300">
-                ✏️ Log Hours
-              </button>
-              <button className="bg-primary text-white hover:bg-primary-light font-bold py-3 px-4 rounded-lg transition-all duration-300">
-                📸 Upload Photos
-              </button>
-              <button className="bg-gold text-primary hover:bg-gold-dark font-bold py-3 px-4 rounded-lg transition-all duration-300">
-                💬 Contact Admin
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -5,21 +5,52 @@
 html {
   height: 100%;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --foreground-rgb: 0, 3, 66;
+  --background-start-rgb: 255, 250, 245;
   --background-end-rgb: 255, 255, 255;
+  --primary: #000342;
+  --gold: #fed600;
+  --orange: #ff6b35;
+  --blue: #4a90e2;
+  --font-size-base: 16px;
+}
+
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 18, 18, 18;
+  --background-end-rgb: 30, 30, 40;
+  --primary: #1a1a3e;
+  --gold: #ffd700;
+}
+
+html.font-small {
+  font-size: 14px;
+}
+
+html.font-large {
+  font-size: 18px;
+}
+
+html.font-xl {
+  font-size: 20px;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, #f8f9ff, #e8f0ff);
+  background: linear-gradient(135deg, #fff5eb 0%, #e3f2fd 50%, #fff0f5 100%);
   position: relative;
   overflow-x: hidden;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Lora', sans-serif;
   min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] body {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 
 body::before {
@@ -31,22 +62,275 @@ body::before {
   height: 100%;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(0, 48, 135, 0.08) 0%,
-    transparent 70%
+    rgba(255, 107, 53, 0.08) 0%,
+    rgba(74, 144, 226, 0.06) 50%,
+    transparent 100%
   );
-  animation: pulse 4s ease-in-out infinite;
+  animation: gentle-pulse 6s ease-in-out infinite;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.1); }
+/* ===== MODERN ANIMATIONS ===== */
+
+@keyframes gentle-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.05); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(254, 214, 0, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(254, 214, 0, 0.8), 0 0 30px rgba(254, 214, 0, 0.6); }
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-fade-in-delay {
+  animation: fade-in 0.8s ease-out 0.2s both;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.7s ease-out;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.7s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Scroll reveal animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== MICRO-INTERACTIONS ===== */
+
+button, a, .clickable {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover:not(:disabled), a:hover, .clickable:hover {
+  transform: translateY(-2px);
+}
+
+button:active:not(:disabled), a:active, .clickable:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Smooth hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(254, 214, 0, 0.6);
+}
+
+/* Input focus effects */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(254, 214, 0, 0.2);
+  transform: scale(1.01);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) rotate(1deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== ORGANIC SHAPES ===== */
+
+.organic-shape {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.blob-shape {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(74, 144, 226, 0.1));
+}
+
+/* ===== GRADIENT TEXT ===== */
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--orange), var(--blue), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== GLASSMORPHISM ===== */
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .glass {
+  background: rgba(30, 30, 40, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== SOFT SHADOWS ===== */
+
+.shadow-soft {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-warm {
+  box-shadow: 0 8px 32px rgba(255, 107, 53, 0.15);
+}
+
+.shadow-cool {
+  box-shadow: 0 8px 32px rgba(74, 144, 226, 0.15);
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  body {
+    background: white;
+    color: black;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 @layer base {
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-parisish);
+    font-family: var(--font-parisish), sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+  h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+  h3 { font-size: clamp(1.25rem, 3vw, 2rem); }
+  
+  p {
+    line-height: 1.7;
+    font-family: 'Lora', serif;
   }
   
   .font-semibold {
@@ -60,10 +344,26 @@ body::before {
 
 @layer components {
   .btn-primary {
-    @apply bg-primary hover:bg-primary-light text-white font-bold py-2 px-6 rounded-lg transition duration-300;
+    @apply bg-gradient-to-r from-primary to-blue-600 hover:from-blue-600 hover:to-primary text-white font-bold py-3 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-100;
   }
   
   .btn-secondary {
-    @apply bg-white text-primary hover:bg-primary hover:text-white border-2 border-primary font-bold py-2 px-6 rounded-lg transition duration-300;
+    @apply bg-white text-primary hover:bg-primary hover:text-white border-2 border-primary font-bold py-3 px-8 rounded-2xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-100;
+  }
+
+  .btn-gold {
+    @apply bg-gradient-to-r from-gold to-yellow-400 hover:from-yellow-400 hover:to-gold text-primary font-bold py-3 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-100;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    @apply ring-4 ring-gold/30 border-gold transform scale-[1.01];
   }
 }
