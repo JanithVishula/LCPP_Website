@@ -53,3 +53,121 @@ export interface Donation {
   paymentMethod?: string;
   createdAt: Date;
 }
+
+export interface Event {
+  _id?: ObjectId;
+  title: string;
+  description: string;
+  date: Date;
+  endDate?: Date;
+  location: string;
+  category: 'meeting' | 'project' | 'social' | 'fundraiser' | 'training' | 'other';
+  maxAttendees?: number;
+  registrationDeadline?: Date;
+  rsvps: {
+    userId: ObjectId;
+    userName: string;
+    userEmail: string;
+    status: 'going' | 'maybe' | 'notgoing';
+    respondedAt: Date;
+  }[];
+  createdBy: ObjectId;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ServiceHour {
+  _id?: ObjectId;
+  userId: ObjectId;
+  userName: string;
+  projectId?: ObjectId;
+  projectName: string;
+  date: Date;
+  hours: number;
+  description: string;
+  status: 'pending' | 'approved' | 'rejected';
+  approvedBy?: ObjectId;
+  approvedAt?: Date;
+  rejectionReason?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface MeetingMinute {
+  _id?: ObjectId;
+  title: string;
+  date: Date;
+  attendees: string[];
+  agenda: string;
+  discussion: string;
+  decisions: string;
+  actionItems: string;
+  nextMeetingDate?: Date;
+  fileUrl?: string;
+  uploadedBy: ObjectId;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface Announcement {
+  _id?: ObjectId;
+  title: string;
+  content: string;
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  expiryDate?: Date;
+  targetAudience: 'all' | 'members' | 'officers' | 'admin';
+  createdBy: ObjectId;
+  createdByName: string;
+  pinned: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface BlogPost {
+  _id?: ObjectId;
+  title: string;
+  slug: string;
+  content: string;
+  excerpt: string;
+  coverImage?: string;
+  author: ObjectId;
+  authorName: string;
+  tags: string[];
+  published: boolean;
+  publishedAt?: Date;
+  views: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ContactMessage {
+  _id?: ObjectId;
+  name: string;
+  email: string;
+  phone?: string;
+  subject: string;
+  message: string;
+  status: 'new' | 'read' | 'replied';
+  repliedAt?: Date;
+  repliedBy?: ObjectId;
+  createdAt: Date;
+}
+
+export interface Payment {
+  _id?: ObjectId;
+  userId?: ObjectId;
+  type: 'donation' | 'membership' | 'event';
+  relatedId?: ObjectId; // event ID or donation ID
+  amount: number;
+  currency: string;
+  paymentMethod: 'card' | 'bank' | 'cash' | 'other';
+  paymentGateway?: string;
+  transactionId?: string;
+  status: 'pending' | 'completed' | 'failed' | 'refunded';
+  payerName: string;
+  payerEmail: string;
+  payerPhone?: string;
+  metadata?: any;
+  createdAt: Date;
+  updatedAt: Date;
+}

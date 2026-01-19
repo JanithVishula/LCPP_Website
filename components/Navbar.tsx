@@ -79,11 +79,25 @@ export default function Navbar() {
               </div>
             </div>
 
-            <Link href="/parent-club" className="px-4 py-2 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 font-semibold">
-              Parent Club
+            {status === 'authenticated' && (
+              <>
+                <Link href="/events" className="px-4 py-2 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 font-semibold">
+                  Events
+                </Link>
+                <Link href="/blog" className="px-4 py-2 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 font-semibold">
+                  Blog
+                </Link>
+                <Link href="/members" className="px-4 py-2 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 font-semibold">
+                  Members
+                </Link>
+              </>
+            )}
+
+            <Link href="/contact" className="px-4 py-2 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 font-semibold">
+              Contact
             </Link>
-            <Link href="/join" className="px-4 py-2 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 font-semibold">
-              Join/Donate
+            <Link href="/donate" className="px-4 py-2 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 font-semibold">
+              Donate
             </Link>
             
             {/* User Menu - Shows name if logged in */}
@@ -93,10 +107,24 @@ export default function Navbar() {
                   👤 {session.user.name}
                 </Link>
                 <div className="absolute top-full right-0 pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
-                  <div className="bg-white text-primary rounded-lg shadow-xl py-2 min-w-[180px]">
+                  <div className="bg-white text-primary rounded-lg shadow-xl py-2 min-w-[200px]">
                     <Link href="/dashboard" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
                       📊 Dashboard
                     </Link>
+                    <Link href="/service-hours" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
+                      ⏱ Service Hours
+                    </Link>
+                    <Link href="/announcements" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
+                      📢 Announcements
+                    </Link>
+                    <Link href="/minutes" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
+                      📝 Minutes
+                    </Link>
+                    {(session.user.role === 'admin' || session.user.role === 'officer') && (
+                      <Link href="/admin" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
+                        ⚙️ Admin Panel
+                      </Link>
+                    )}
                     <button 
                       onClick={() => signOut({ callbackUrl: '/' })}
                       className="w-full text-left block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300"
