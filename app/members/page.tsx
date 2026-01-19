@@ -59,12 +59,12 @@ export default function MembersPage() {
 
   const fetchMembers = async () => {
     try {
-      const res = await fetch('/api/user/stats');
+      const res = await fetch('/api/members');
       const data = await res.json();
       
-      if (data.users) {
-        setMembers(data.users);
-        setFilteredMembers(data.users);
+      if (data.members) {
+        setMembers(data.members);
+        setFilteredMembers(data.members);
       }
     } catch (error) {
       console.error('Error fetching members:', error);

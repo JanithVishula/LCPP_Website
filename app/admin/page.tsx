@@ -17,6 +17,7 @@ export default function AdminPage() {
     upcomingEvents: 0,
     newMessages: 0,
     recentAnnouncements: 0,
+    pendingSuggestions: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -53,6 +54,10 @@ export default function AdminPage() {
       const announcementsRes = await fetch('/api/announcements');
       const announcements = announcementsRes.ok ? await announcementsRes.json() : { announcements: [] };
 
+      // Fetch suggestions
+      const suggestionsRes = await fetch('/api/suggestions?status=pending');
+      const suggestions = suggestionsRes.ok ? await suggestionsRes.json() : { suggestions: [] };
+
       // Get all service hours for total
       const allHoursRes = await fetch('/api/service-hours?status=approved');
       const allHours = allHoursRes.ok ? await allHoursRes.json() : { hours: [] };
@@ -70,6 +75,7 @@ export default function AdminPage() {
         upcomingEvents: events.events?.length || 0,
         newMessages: 0,
         recentAnnouncements: announcements.announcements?.length || 0,
+        pendingSuggestions: suggestions.suggestions?.length || 0,
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
@@ -116,6 +122,56 @@ export default function AdminPage() {
           </div>
 
           <div className="bg-white rounded-lg shadow-lg p-6">
+        {/* Admin Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Link
+            href="/events/create"
+            className="bg-gradient-to-r from-primary to-orange-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all transform hover:scale-105"
+          >
+            <h3 className="text-xl font-bold mb-2">📅 Create Event</h3>
+            <p className="text-white/90">Schedule a new Leo Club event</p>
+          </Link>
+
+          <Link
+            href="/announcements/create"
+            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all transform hover:scale-105"
+          >
+            <h3 className="text-xl font-bold mb-2">📢 Make Announcement</h3>
+            <p className="text-white/90">Post important club updates</p>
+          </Link>
+
+          <Link
+            href="/suggestions/review"
+            className="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all transform hover:scale-105"
+          >
+            <h3 className="text-xl font-bold mb-2">💡 Review Suggestions</h3>
+            <p className="text-white/90">{stats.pendingSuggestions} pending review</p>
+          </Link>
+
+          <Link
+            href="/members"
+            className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all transform hover:scale-105"
+          >
+            <h3 className="text-xl font-bold mb-2">👥 View Members</h3>
+            <p className="text-white/90">{stats.totalUsers} total members</p>
+          </Link>
+
+          <Link
+            href="/members/create"
+            className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all transform hover:scale-105"
+          >
+            <h3 className="text-xl font-bold mb-2">➕ Add Member</h3>
+            <p className="text-white/90">Create new admin, officer, or member</p>
+          </Link>
+
+          <Link
+            href="/service-hours"
+            className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all transform hover:scale-105"
+          >
+            <h3 className="text-xl font-bold mb-2">⏱️ Service Hours</h3>
+            <p className="text-white/90">{stats.pendingServiceHours} pending approval</p>
+          </Link>
+        </div>
             <h3 className="text-gray-500 text-sm mb-2">Announcements</h3>
             <p className="text-4xl font-bold text-primary">{stats.recentAnnouncements}</p>
           </div>
