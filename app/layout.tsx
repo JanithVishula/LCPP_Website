@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import localFont from "next/font/local";
+import { Lora } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AuthProvider from "@/components/AuthProvider";
 
-const montserrat = Montserrat({ 
+const parisish = localFont({
+  src: "../public/Parisish-EEoW.ttf",
+  variable: '--font-parisish',
+});
+
+const lora = Lora({ 
   subsets: ["latin"],
-  weight: ['400', '600', '700'],
-  variable: '--font-montserrat',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-lora',
 });
 
 export const metadata: Metadata = {
@@ -23,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
+      <body className={`${lora.variable} ${parisish.variable} ${lora.className}`}>
         <AuthProvider>
           <Navbar />
           <main className="min-h-screen pt-20">

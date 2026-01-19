@@ -10,9 +10,9 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#001856', // Leo navy blue (from logo)
-          light: '#003087',
-          dark: '#000342',
+          DEFAULT: '#000342', // Leo club blue
+          light: '#001856',
+          dark: '#000120',
         },
         secondary: {
           DEFAULT: '#fed600', // Gold from logo

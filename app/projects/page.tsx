@@ -4,58 +4,18 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-interface Project {
-  id: string;
-  title: string;
-  date: string;
-  description: string;
-  category: string;
-  year: string;
-  participants?: number;
-  impact?: string;
-}
-
 export default function ProjectsPage() {
   const searchParams = useSearchParams();
   const yearParam = searchParams.get('year');
   const [activeYear, setActiveYear] = useState('2024-25');
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (yearParam) {
       setActiveYear(yearParam);
     }
   }, [yearParam]);
-
-  useEffect(() => {
-    fetchProjects();
-  }, [activeYear]);
-
-  const fetchProjects = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(`/api/projects?year=${activeYear}`);
-      if (response.ok) {
-        const data = await response.json();
-        setProjects(data.projects);
-      }
-    } catch (error) {
-      console.error('Error fetching projects:', error);
-      setProjects(getFallbackProjects());
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getFallbackProjects = () => {
-    if (activeYear === '2024-25') {
-      return projects2024_25;
-    }
-    return [];
-  };
 
   const openModal = (project: any) => {
     setSelectedProject(project);
@@ -243,25 +203,13 @@ export default function ProjectsPage() {
 
         {/* Projects Tree Layout */}
         <div className="max-w-7xl mx-auto px-4">
-          {loading ? (
-            <div className="text-center py-20">
-              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-gold mx-auto mb-4"></div>
-              <p className="text-primary text-lg font-semibold">Loading Projects...</p>
-            </div>
-          ) : projects.length === 0 ? (
-            <div className="text-center py-20 bg-white rounded-2xl shadow-lg border-2 border-primary">
-              <div className="text-6xl mb-4">📋</div>
-              <h3 className="text-2xl font-bold text-primary mb-2">No Projects Yet</h3>
-              <p className="text-gray-600">Projects for {activeYear} will be added soon!</p>
-            </div>
-          ) : (
-            <div className="relative">
-              {/* Tree Trunk Visual */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-2 bg-primary opacity-20 h-full hidden lg:block"></div>
-              
-              {/* Projects as Tree Branches */}
-              <div className="space-y-8">
-                {projects.map((project, index) => {
+          <div className="relative">
+            {/* Tree Trunk Visual */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-2 bg-primary opacity-20 h-full hidden lg:block"></div>
+            
+            {/* Projects as Tree Branches */}
+            <div className="space-y-8">
+              {getCurrentProjects().map((project, index) => {
                 // Varying sizes for tree branch effect
                 const sizes = ['col-span-3', 'col-span-2', 'col-span-4', 'col-span-2', 'col-span-3'];
                 const size = sizes[index % sizes.length];
@@ -296,10 +244,9 @@ export default function ProjectsPage() {
                     </div>
                   </div>
                 );
-                })}
-              </div>
+              })}
             </div>
-          )}
+          </div>
         </div>
 
         {/* Modal Popup */}

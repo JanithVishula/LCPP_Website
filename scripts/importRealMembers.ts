@@ -24,7 +24,7 @@ async function importRealMembers() {
     // Real member data from the CSV
     const members = [
       // First member = Admin
-      { name: 'Janith Vishula', email: 'jvishula35@gmail.com', phone: '94-70-1934703', city: 'Kegalle', memberID: '6243180', role: 'admin' },
+      { name: 'Wibhavith Bandara', email: 'leo.thavishab@gmail.com', phone: '94771856959', city: 'Pannipitiya', memberID: '5728443', role: 'admin' },
       // Next 2 = Officers
       { name: 'Gimhani Wkickramarathna', email: 'gimhaniwickramarathna882@gmail.com', phone: '94-76-8375631', city: 'Piliyandala', memberID: '5986850', role: 'officer' },
       { name: 'Nawimana Withanage Ramuditha', email: 'nwlramuditha22612@gmail.com', phone: '94703587634', city: 'Wellampitiya', memberID: '6005000', role: 'officer' },
@@ -55,7 +55,7 @@ async function importRealMembers() {
       { name: 'Uvin Kaveesh', email: 'uvinkaveesh@gmail.com', phone: '97-71-3539052', city: 'Colombo', memberID: '6000628', role: 'member' },
       { name: 'Vidusha Thevinda', email: 'vidushaambawaththa@gamil.com', phone: '0753556780', city: 'Ukuwela', memberID: '26709601', role: 'member' },
       { name: 'Dulaj Karunanayake', email: 'chandrikawijesingha@gmail.com', city: 'Athurugiriya', memberID: '26718716', role: 'member' },
-      { name: 'Wibhavith Bandara', email: 'leo.thavishab@gmail.com', phone: '94771856959', city: 'Pannipitiya', memberID: '5728443', role: 'member' },
+      { name: 'Janith Vishula', email: 'jvishula35@gmail.com', phone: '94-70-1934703', city: 'Kegalle', memberID: '6243180', role: 'member' },
       { name: 'Manuga Herath', email: 'herathmanuga15@gmail.com', city: 'Kadawatha', memberID: '26868024', role: 'member' },
       { name: 'Asenda Handunhewa', email: 'nethadhewa@gmail.com', city: 'Matara', memberID: '26868082', role: 'member' },
       { name: 'Sandinu Nethmika', email: 'sanaboy2332@gmail.com', city: 'Ingiriya', memberID: '26868106', role: 'member' },
