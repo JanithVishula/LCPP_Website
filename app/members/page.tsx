@@ -24,6 +24,16 @@ export default function MembersPage() {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRole, setFilterRole] = useState<'all' | 'admin' | 'officer' | 'member'>('all');
+  const [editingMember, setEditingMember] = useState<User | null>(null);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editForm, setEditForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    membershipNumber: '',
+    role: '',
+    active: true,
+  });
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -70,6 +80,72 @@ export default function MembersPage() {
       console.error('Error fetching members:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleEditMember = (member: User) => {
+    setEditingMember(member);
+    setEditForm({
+      name: member.name,
+      email: member.email,
+      phone: member.phone || '',
+      membershipNumber: member.membershipNumber || '',
+      role: member.role,
+      active: member.active,
+    });
+    setShowEditModal(true);
+  };
+
+  const handleSaveEdit = async () => {
+    if (!editingMember) return;
+
+    try {
+      const res = await fetch('/api/members/update', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: editingMember._id,
+          updates: editForm,
+        }),
+      });
+
+      if (res.ok) {
+        setShowEditModal(false);
+        fetchMembers();
+        alert('Member updated successfully!');
+      } else {
+        alert('Failed to update member');
+      }
+    } catch (error) {
+      console.error('Error updating member:', error);
+      alert('Error updating member');
+    }
+  };
+
+  const handlePromote = async (memberId: string, newRole: string) => {
+    if (!confirm(`Are you sure you want to change this member's role to ${newRole}?`)) {
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/members/update', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: memberId,
+          updates: { role: newRole },
+        }),
+      });
+
+      if (res.ok) {
+        fetchMembers();
+        alert(`Member promoted to ${newRole} successfully!`);
+      } else {
+        alert('Failed to promote member');
+      }
+    } catch (error) {
+      console.error('Error promoting member:', error);
+      alert('Error promoting member');
     }
   };
 
@@ -234,6 +310,51 @@ export default function MembersPage() {
                   </p>
                 </div>
               </div>
+
+              {/* Admin Actions */}
+              {session?.user?.role === 'admin' && (
+                <div className="mt-4 pt-4 border-t border-gray-200 flex gap-2">
+                  <button
+                    onClick={() => handleEditMember(member)}
+                    className="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-600 transition-all text-sm"
+                  >
+                    ✏️ Edit
+                  </button>
+                  {member.role !== 'admin' && (
+                    <div className="relative group flex-1">
+                      <button className="w-full bg-purple-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-purple-600 transition-all text-sm">
+                        ⬆️ Promote
+                      </button>
+                      <div className="absolute bottom-full left-0 right-0 mb-2 hidden group-hover:block bg-white border-2 border-purple-500 rounded-lg shadow-xl overflow-hidden z-10">
+                        {member.role !== 'officer' && (
+                          <button
+                            onClick={() => handlePromote(member._id, 'officer')}
+                            className="w-full px-4 py-2 text-left hover:bg-purple-100 transition-all"
+                          >
+                            👮 Make Officer
+                          </button>
+                        )}
+                        {member.role !== 'admin' && (
+                          <button
+                            onClick={() => handlePromote(member._id, 'admin')}
+                            className="w-full px-4 py-2 text-left hover:bg-purple-100 transition-all"
+                          >
+                            👑 Make Admin
+                          </button>
+                        )}
+                        {member.role !== 'member' && (
+                          <button
+                            onClick={() => handlePromote(member._id, 'member')}
+                            className="w-full px-4 py-2 text-left hover:bg-purple-100 transition-all"
+                          >
+                            👤 Demote to Member
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -243,6 +364,102 @@ export default function MembersPage() {
             <div className="text-6xl mb-4">🔍</div>
             <p className="text-xl text-gray-600">No members found</p>
             <p className="text-gray-500 mt-2">Try adjusting your search or filters</p>
+          </div>
+        )}
+
+        {/* Edit Member Modal */}
+        {showEditModal && editingMember && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="sticky top-0 bg-gradient-to-r from-primary to-blue-600 text-white p-6 rounded-t-2xl">
+                <h2 className="text-2xl font-bold">✏️ Edit Member: {editingMember.name}</h2>
+              </div>
+              
+              <div className="p-6 space-y-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">Name</label>
+                  <input
+                    type="text"
+                    value={editForm.name}
+                    onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-primary/30 focus:border-primary"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">Email</label>
+                  <input
+                    type="email"
+                    value={editForm.email}
+                    onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-primary/30 focus:border-primary"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">Phone</label>
+                  <input
+                    type="tel"
+                    value={editForm.phone}
+                    onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-primary/30 focus:border-primary"
+                    placeholder="+94 XX XXX XXXX"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">Membership Number</label>
+                  <input
+                    type="text"
+                    value={editForm.membershipNumber}
+                    onChange={(e) => setEditForm({ ...editForm, membershipNumber: e.target.value })}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-primary/30 focus:border-primary"
+                    placeholder="LEO-2026-XXX"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">Role</label>
+                  <select
+                    value={editForm.role}
+                    onChange={(e) => setEditForm({ ...editForm, role: e.target.value })}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-primary/30 focus:border-primary"
+                  >
+                    <option value="member">👤 Member</option>
+                    <option value="officer">👮 Officer</option>
+                    <option value="admin">👑 Admin</option>
+                  </select>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    id="active"
+                    checked={editForm.active}
+                    onChange={(e) => setEditForm({ ...editForm, active: e.target.checked })}
+                    className="w-5 h-5"
+                  />
+                  <label htmlFor="active" className="text-sm font-bold text-gray-700">
+                    Active Member
+                  </label>
+                </div>
+
+                <div className="flex gap-4 pt-4">
+                  <button
+                    onClick={handleSaveEdit}
+                    className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition-all"
+                  >
+                    💾 Save Changes
+                  </button>
+                  <button
+                    onClick={() => setShowEditModal(false)}
+                    className="flex-1 bg-gray-300 text-gray-700 py-3 rounded-lg font-bold hover:bg-gray-400 transition-all"
+                  >
+                    ❌ Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
