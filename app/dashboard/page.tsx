@@ -3,6 +3,7 @@
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import BackButton from '@/components/BackButton';
 
 interface UserStats {
   user: {
@@ -80,6 +81,7 @@ export default function DashboardPage() {
     <div className="bg-white py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
+          <BackButton />
           {/* Header */}
           <div className="bg-gradient-to-r from-primary to-primary-light text-white rounded-2xl p-8 mb-8 shadow-xl">
             <h1 className="text-4xl font-bold mb-2">Welcome back, {stats.user.name}!</h1>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import BackButton from '@/components/BackButton';
 import Link from 'next/link';
 
 interface User {
@@ -178,6 +179,7 @@ export default function MembersPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-blue-50 to-orange-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+        <BackButton />
         {/* Header */}
         <div className="flex justify-between items-center mb-8 animate-slide-down">
           <div>

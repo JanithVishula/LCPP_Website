@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import BackButton from '@/components/BackButton';
 import Link from 'next/link';
 
 export default function CreateAccountPage() {
@@ -108,6 +109,7 @@ export default function CreateAccountPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-blue-50 to-orange-50 py-12 px-4">
       <div className="max-w-2xl mx-auto">
+        <BackButton />
         <div className="bg-white rounded-3xl shadow-2xl p-8 animate-slide-up">
           <div className="mb-6">
             <h1 className="text-3xl font-bold text-primary mb-2">➕ Create New Account</h1>

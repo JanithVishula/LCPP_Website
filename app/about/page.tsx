@@ -35,8 +35,8 @@ export default function AboutPage() {
   }, [activeSection]);
 
   return (
-    <div className="bg-white py-12">
-      <div className="container mx-auto px-4">
+    <div className="bg-white">
+      <div className="container mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold text-primary mb-8 text-center">About Us</h1>
         
         {/* Category Tabs */}
@@ -262,27 +262,32 @@ export default function AboutPage() {
 
         {/* Our Club Section */}
         {activeSection === 'ourclub' && (
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-primary mb-6">Leo Club of Pannipitiya Paradise</h2>
-            
-            <div className="space-y-8">
-              {/* Parallax Hero Section */}
-              <div className="relative h-[500px] overflow-hidden rounded-2xl shadow-2xl">
-                <div 
-                  ref={parallaxRef}
-                  className="absolute inset-0 w-full h-[800px] bg-cover bg-center"
-                  style={{
-                    backgroundImage: 'url(/se.jpg)',
-                    top: '-150px',
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent flex items-end">
-                  <div className="p-8 text-white">
-                    <h3 className="text-4xl font-bold mb-2">Empowering Youth, Serving Communities</h3>
-                    <p className="text-xl">Making a difference since our establishment</p>
+          <div>
+            {/* Full Width Parallax Hero Section */}
+            <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] h-[70vh] min-h-[600px] overflow-hidden">
+              <div 
+                ref={parallaxRef}
+                className="absolute inset-0 w-full h-[120%] bg-contain bg-no-repeat bg-center"
+                style={{
+                  backgroundImage: 'url(/se.jpg)',
+                  backgroundSize: '100% auto',
+                  top: '-10%',
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent flex items-end">
+                <div className="container mx-auto px-4">
+                  <div className="p-8 text-white max-w-5xl">
+                    <h3 className="text-4xl md:text-5xl font-bold mb-2">Empowering Youth, Serving Communities</h3>
+                    <p className="text-xl md:text-2xl">Making a difference since our establishment</p>
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div className="max-w-5xl mx-auto px-4 mt-12">
+              <h2 className="text-3xl font-bold text-primary mb-6">Leo Club of Pannipitiya Paradise</h2>
+            
+            <div className="space-y-8">
 
               {/* Mission Section */}
               <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-6">
@@ -485,6 +490,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
+            </div>
             </div>
           </div>
         )}

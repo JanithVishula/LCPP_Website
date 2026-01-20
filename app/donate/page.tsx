@@ -174,12 +174,47 @@ export default function DonatePage() {
           </div>
         </div>
 
+        {/* Bank Details Section */}
+        <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-lg shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-primary mb-4">💳 Direct Bank Transfer</h2>
+          <p className="text-gray-600 mb-6">You can also make a direct bank transfer to our club account:</p>
+          
+          <div className="bg-white rounded-lg p-6 border-2 border-gold space-y-3">
+            <div className="flex justify-between items-center border-b pb-3">
+              <span className="font-semibold text-gray-700">Bank Name:</span>
+              <span className="text-primary font-bold">Bank of Ceylon</span>
+            </div>
+            <div className="flex justify-between items-center border-b pb-3">
+              <span className="font-semibold text-gray-700">Account Name:</span>
+              <span className="text-primary font-bold">Leo Club of Pannipitiya Paradise</span>
+            </div>
+            <div className="flex justify-between items-center border-b pb-3">
+              <span className="font-semibold text-gray-700">Account Number:</span>
+              <span className="text-primary font-bold text-lg">1234567890</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="font-semibold text-gray-700">Branch:</span>
+              <span className="text-primary font-bold">Pannipitiya</span>
+            </div>
+          </div>
+
+          <div className="mt-6 bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+            <p className="text-sm text-gray-700">
+              <strong>📌 Note:</strong> Please email your payment receipt to{' '}
+              <a href="mailto:treasurer@leopannipitiyaparadise.org" className="text-primary hover:underline font-semibold">
+                treasurer@leopannipitiyaparadise.org
+              </a>{' '}
+              with your name and contact details for verification.
+            </p>
+          </div>
+        </div>
+
         <button
           onClick={handleDonate}
           disabled={loading || !amount || !formData.name || !formData.email}
-          className="w-full bg-primary text-white py-4 rounded-lg text-xl font-bold hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-primary text-white py-4 rounded-lg text-xl font-bold hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 shadow-xl"
         >
-          {loading ? 'Processing...' : 'Donate Now'}
+          {loading ? 'Processing...' : '💝 Donate Now'}
         </button>
 
         <p className="text-center text-gray-500 text-sm mt-6">
