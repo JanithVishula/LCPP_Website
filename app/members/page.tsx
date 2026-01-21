@@ -160,9 +160,9 @@ export default function MembersPage() {
 
   const getRoleIcon = (role: string) => {
     switch(role) {
-      case 'admin': return '👑';
-      case 'officer': return '👮';
-      default: return '👤';
+      case 'admin': return 'ADM';
+      case 'officer': return 'OFF';
+      default: return 'MBR';
     }
   };
 
@@ -183,7 +183,7 @@ export default function MembersPage() {
         {/* Header */}
         <div className="flex justify-between items-center mb-8 animate-slide-down">
           <div>
-            <h1 className="text-5xl font-bold text-primary mb-2">👥 Member Directory</h1>
+            <h1 className="text-5xl font-bold text-primary mb-2">Member Directory</h1>
             <p className="text-gray-600">Leo Club of Pannipitiya Paradise</p>
           </div>
           {isAdminOrOfficer && (
@@ -191,7 +191,7 @@ export default function MembersPage() {
               href="/members/create"
               className="bg-gradient-to-r from-primary to-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
             >
-              ➕ Create Account
+              Create Account
             </Link>
           )}
         </div>
@@ -200,7 +200,7 @@ export default function MembersPage() {
         <div className="mb-8 space-y-4 animate-fade-in">
           <input
             type="text"
-            placeholder="🔍 Search by name, email, or membership number..."
+            placeholder="Search by name, email, or membership number..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full px-6 py-4 text-lg border-2 border-primary/30 rounded-xl focus:ring-4 focus:ring-gold/30 focus:border-gold shadow-soft"
@@ -293,13 +293,13 @@ export default function MembersPage() {
 
                 {member.membershipNumber && (
                   <div className="bg-gray-50 p-3 rounded-xl">
-                    <p className="text-xs text-gray-500 mb-1">🎫 Membership</p>
+                    <p className="text-xs text-gray-500 mb-1">Membership</p>
                     <p className="text-primary font-bold">{member.membershipNumber}</p>
                   </div>
                 )}
 
                 <div className="bg-gray-50 p-3 rounded-xl">
-                  <p className="text-xs text-gray-500 mb-1">📅 Joined</p>
+                  <p className="text-xs text-gray-500 mb-1">Joined</p>
                   <p className="text-primary font-semibold">
                     {new Date(member.joinedDate).toLocaleDateString('en-US', {
                       year: 'numeric',
@@ -320,12 +320,12 @@ export default function MembersPage() {
                     onClick={() => handleEditMember(member)}
                     className="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-600 transition-all text-sm"
                   >
-                    ✏️ Edit
+                    Edit
                   </button>
                   {member.role !== 'admin' && (
                     <div className="relative group flex-1">
                       <button className="w-full bg-purple-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-purple-600 transition-all text-sm">
-                        ⬆️ Promote
+                        Promote
                       </button>
                       <div className="absolute bottom-full left-0 right-0 mb-2 hidden group-hover:block bg-white border-2 border-purple-500 rounded-lg shadow-xl overflow-hidden z-10">
                         {member.role !== 'officer' && (
@@ -333,7 +333,7 @@ export default function MembersPage() {
                             onClick={() => handlePromote(member._id, 'officer')}
                             className="w-full px-4 py-2 text-left hover:bg-purple-100 transition-all"
                           >
-                            👮 Make Officer
+                            Make Officer
                           </button>
                         )}
                         {member.role !== 'admin' && (
@@ -341,7 +341,7 @@ export default function MembersPage() {
                             onClick={() => handlePromote(member._id, 'admin')}
                             className="w-full px-4 py-2 text-left hover:bg-purple-100 transition-all"
                           >
-                            👑 Make Admin
+                            Make Admin
                           </button>
                         )}
                         {member.role !== 'member' && (
@@ -349,7 +349,7 @@ export default function MembersPage() {
                             onClick={() => handlePromote(member._id, 'member')}
                             className="w-full px-4 py-2 text-left hover:bg-purple-100 transition-all"
                           >
-                            👤 Demote to Member
+                            Demote to Member
                           </button>
                         )}
                       </div>

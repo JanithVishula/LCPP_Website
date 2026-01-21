@@ -104,35 +104,23 @@ export default function Navbar() {
             {status === 'authenticated' && session?.user ? (
               <div className="relative group">
                 <Link href="/dashboard" className="bg-gold text-primary hover:bg-gold-dark hover:text-white px-6 py-2 rounded-lg transition-all duration-300 font-bold shadow-lg ml-2 flex items-center gap-2">
-                  👤 {session.user.name}
+                  {session.user.name}
                 </Link>
                 <div className="absolute top-full right-0 pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
                   <div className="bg-white text-primary rounded-lg shadow-xl py-2 min-w-[200px]">
                     <Link href="/dashboard" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
-                      📊 Dashboard
-                    </Link>
-                    <Link href="/service-hours" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
-                      ⏱ Service Hours
-                    </Link>
-                    <Link href="/suggestions/create" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
-                      💡 Suggest Project
-                    </Link>
-                    <Link href="/announcements" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
-                      📢 Announcements
-                    </Link>
-                    <Link href="/minutes" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
-                      📝 Minutes
+                      Dashboard
                     </Link>
                     {(session.user.role === 'admin' || session.user.role === 'officer') && (
                       <Link href="/admin" className="block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300">
-                        ⚙️ Admin Panel
+                        Admin Panel
                       </Link>
                     )}
                     <button 
                       onClick={() => signOut({ callbackUrl: '/' })}
                       className="w-full text-left block px-4 py-2 hover:bg-primary hover:text-white transition-all duration-300"
                     >
-                      🚪 Logout
+                      Logout
                     </button>
                   </div>
                 </div>
@@ -182,13 +170,13 @@ export default function Navbar() {
             {status === 'authenticated' && session?.user ? (
               <>
                 <Link href="/dashboard" className="block py-2 mt-2 bg-gold text-primary hover:bg-gold-dark hover:text-white px-4 rounded-lg transition-all duration-300 font-bold shadow-lg">
-                  👤 {session.user.name}
+                  {session.user.name}
                 </Link>
                 <button 
                   onClick={() => signOut({ callbackUrl: '/' })}
                   className="w-full text-left block py-2 px-4 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 font-semibold"
                 >
-                  🚪 Logout
+                  Logout
                 </button>
               </>
             ) : (

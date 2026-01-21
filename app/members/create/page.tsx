@@ -93,7 +93,6 @@ export default function CreateAccountPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary to-primary-dark">
         <div className="bg-white p-8 rounded-2xl shadow-2xl text-center max-w-md animate-scale-in">
-          <div className="text-6xl mb-4">✅</div>
           <h2 className="text-2xl font-bold text-primary mb-2">Account Created!</h2>
           <p className="text-gray-600 mb-4">
             New {formData.role} account has been created successfully.
@@ -240,7 +239,7 @@ export default function CreateAccountPage() {
                     }`}
                     disabled={loading}
                   >
-                    👑 Admin
+                    Admin
                   </button>
                 )}
                 {isAdmin && (
@@ -254,7 +253,7 @@ export default function CreateAccountPage() {
                     }`}
                     disabled={loading}
                   >
-                    👮 Officer
+                    Officer
                   </button>
                 )}
                 <button

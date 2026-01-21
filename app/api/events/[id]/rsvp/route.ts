@@ -8,9 +8,10 @@ import { ObjectId } from 'mongodb';
 // POST /api/events/[id]/rsvp - RSVP to event (authenticated members)
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {

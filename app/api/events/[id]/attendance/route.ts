@@ -6,9 +6,10 @@ import { ObjectId } from 'mongodb';
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const session = await getServerSession(authOptions);
 
     if (!session) {
@@ -87,9 +88,10 @@ export async function POST(
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const session = await getServerSession(authOptions);
 
     if (!session) {

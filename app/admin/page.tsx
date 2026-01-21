@@ -73,11 +73,8 @@ export default function AdminPage() {
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-purple-50 to-blue-50 py-8">
       <div className="max-w-7xl mx-auto px-4">
         <BackButton />
-        {/* Header with Crown */}
+        {/* Header */}
         <div className="mb-8 text-center">
-          <div className="inline-block mb-4">
-            <div className="text-6xl animate-bounce">👑</div>
-          </div>
           <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-600 via-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
             Admin Command Center
           </h1>
@@ -89,7 +86,6 @@ export default function AdminPage() {
           {/* Total Members */}
           <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
             <div className="flex items-center justify-between mb-4">
-              <div className="text-4xl">👥</div>
               <div className="text-3xl font-bold">{stats.totalMembers}</div>
             </div>
             <div className="text-blue-100 font-semibold">Total Members</div>
@@ -98,7 +94,6 @@ export default function AdminPage() {
           {/* Total Hours */}
           <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
             <div className="flex items-center justify-between mb-4">
-              <div className="text-4xl">⏰</div>
               <div className="text-3xl font-bold">{stats.totalHours}</div>
             </div>
             <div className="text-green-100 font-semibold">Service Hours</div>
@@ -107,7 +102,6 @@ export default function AdminPage() {
           {/* Total Suggestions */}
           <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
             <div className="flex items-center justify-between mb-4">
-              <div className="text-4xl">💡</div>
               <div className="text-3xl font-bold">{stats.totalSuggestions}</div>
             </div>
             <div className="text-purple-100 font-semibold">Project Ideas</div>
@@ -116,7 +110,6 @@ export default function AdminPage() {
           {/* Upcoming Events */}
           <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
             <div className="flex items-center justify-between mb-4">
-              <div className="text-4xl">📅</div>
               <div className="text-3xl font-bold">{stats.upcomingEvents}</div>
             </div>
             <div className="text-orange-100 font-semibold">Upcoming Events</div>
@@ -128,25 +121,14 @@ export default function AdminPage() {
           {/* Create Event */}
           <Link href="/events/create">
             <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-blue-500">
-              <div className="text-5xl mb-4">📅</div>
               <h3 className="text-2xl font-bold text-primary mb-2">Create Event</h3>
               <p className="text-gray-600">Schedule new club events and meetings</p>
-            </div>
-          </Link>
-
-          {/* Make Announcement */}
-          <Link href="/announcements/create">
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-green-500">
-              <div className="text-5xl mb-4">📢</div>
-              <h3 className="text-2xl font-bold text-primary mb-2">Announcements</h3>
-              <p className="text-gray-600">Post important club announcements</p>
             </div>
           </Link>
 
           {/* Manage Members */}
           <Link href="/members">
             <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-purple-500">
-              <div className="text-5xl mb-4">👥</div>
               <h3 className="text-2xl font-bold text-primary mb-2">Manage Members</h3>
               <p className="text-gray-600">Edit member details and roles</p>
             </div>
@@ -155,7 +137,6 @@ export default function AdminPage() {
           {/* Create Account */}
           <Link href="/members/create">
             <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-orange-500">
-              <div className="text-5xl mb-4">➕</div>
               <h3 className="text-2xl font-bold text-primary mb-2">Create Account</h3>
               <p className="text-gray-600">Add new members, officers, or admins</p>
             </div>
@@ -164,7 +145,6 @@ export default function AdminPage() {
           {/* Review Suggestions */}
           <Link href="/suggestions">
             <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-yellow-500">
-              <div className="text-5xl mb-4">💡</div>
               <h3 className="text-2xl font-bold text-primary mb-2">Project Ideas</h3>
               <p className="text-gray-600">Review member project suggestions</p>
             </div>
@@ -173,7 +153,6 @@ export default function AdminPage() {
           {/* Service Hours */}
           <Link href="/service-hours">
             <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-red-500">
-              <div className="text-5xl mb-4">⏱️</div>
               <h3 className="text-2xl font-bold text-primary mb-2">Service Hours</h3>
               <p className="text-gray-600">Approve and track service hours</p>
             </div>
@@ -182,7 +161,7 @@ export default function AdminPage() {
 
         {/* Quick Stats Section */}
         <div className="mt-8 bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-bold text-primary mb-4">📊 Quick Overview</h2>
+          <h2 className="text-2xl font-bold text-primary mb-4">Quick Overview</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4">
               <p className="text-sm text-gray-600">Average Hours/Member</p>

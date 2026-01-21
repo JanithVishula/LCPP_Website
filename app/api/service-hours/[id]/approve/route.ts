@@ -8,9 +8,10 @@ import { ObjectId } from 'mongodb';
 // PUT /api/service-hours/[id]/approve - Approve/reject service hours (admin/officer only)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {

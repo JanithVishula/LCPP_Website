@@ -1,21 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 import Link from 'next/link';
 
 export default function ProjectsPage() {
-  const searchParams = useSearchParams();
-  const yearParam = searchParams.get('year');
   const [activeYear, setActiveYear] = useState('2024-25');
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    if (yearParam) {
-      setActiveYear(yearParam);
-    }
-  }, [yearParam]);
 
   const openModal = (project: any) => {
     setSelectedProject(project);
@@ -290,7 +281,7 @@ export default function ProjectsPage() {
                     <div className="bg-white border-2 border-primary rounded-xl p-6">
                       <h4 className="text-xl font-bold text-primary mb-3 flex items-center gap-2">
                         <div className="w-8 h-8 bg-gold rounded-full flex items-center justify-center">
-                          <span className="text-primary text-lg">📅</span>
+                          <span className="text-primary text-sm">DT</span>
                         </div>
                         Date
                       </h4>
@@ -300,7 +291,7 @@ export default function ProjectsPage() {
                     <div className="bg-white border-2 border-primary rounded-xl p-6">
                       <h4 className="text-xl font-bold text-primary mb-3 flex items-center gap-2">
                         <div className="w-8 h-8 bg-gold rounded-full flex items-center justify-center">
-                          <span className="text-primary text-lg">🎯</span>
+                          <span className="text-primary text-sm">CT</span>
                         </div>
                         Category
                       </h4>

@@ -8,9 +8,10 @@ import { ObjectId } from 'mongodb';
 // GET /api/events/[id] - Get single event
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const client = await clientPromise;
     const db = client.db('leo_club');
 
@@ -35,9 +36,10 @@ export async function GET(
 // PUT /api/events/[id] - Update event (admin/officer only)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
@@ -89,9 +91,10 @@ export async function PUT(
 // DELETE /api/events/[id] - Delete event (admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {

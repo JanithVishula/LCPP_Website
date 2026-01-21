@@ -155,7 +155,7 @@ export default function EventsPage() {
       <div className="max-w-6xl mx-auto px-4">
         <BackButton />
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-primary mb-4">📅 Club Events</h1>
+          <h1 className="text-4xl font-bold text-primary mb-4">Club Events</h1>
           <p className="text-gray-600 mb-6">
             Stay connected with our upcoming events and meetings. RSVP and mark your attendance!
           </p>
@@ -214,12 +214,12 @@ export default function EventsPage() {
                       </span>
                       {isBoardMeeting && (
                         <span className="inline-block px-3 py-1 text-sm bg-purple-600 text-white rounded-full">
-                          👮 Board Meeting
+                          Board Meeting
                         </span>
                       )}
                       {event.meetingType === 'general' && (
                         <span className="inline-block px-3 py-1 text-sm bg-blue-600 text-white rounded-full">
-                          📋 General Meeting
+                          General Meeting
                         </span>
                       )}
                     </div>
@@ -228,35 +228,35 @@ export default function EventsPage() {
                   </div>
 
                   <div className="space-y-2 mb-4 text-sm text-gray-700">
-                    <p>📅 {new Date(event.date).toLocaleDateString('en-US', { 
+                    <p>{new Date(event.date).toLocaleDateString('en-US', { 
                       weekday: 'long', 
                       year: 'numeric', 
                       month: 'long', 
                       day: 'numeric' 
                     })}</p>
-                    <p>🕐 {new Date(event.date).toLocaleTimeString('en-US', { 
+                    <p>{new Date(event.date).toLocaleTimeString('en-US', { 
                       hour: '2-digit', 
                       minute: '2-digit' 
                     })}</p>
-                    <p>📍 {event.location}</p>
+                    <p>{event.location}</p>
                     {event.maxAttendees && (
-                      <p>👥 {counts.going} / {event.maxAttendees} attending</p>
+                      <p>{counts.going} / {event.maxAttendees} attending</p>
                     )}
                   </div>
 
                   <div className="border-t pt-4 mb-4">
                     <p className="text-sm text-gray-600 mb-2">
-                      ✅ {counts.going} Going | 🤔 {counts.maybe} Maybe | ❌ {counts.notgoing} Not Going
+                      {counts.going} Going | {counts.maybe} Maybe | {counts.notgoing} Not Going
                     </p>
                   </div>
 
                   {/* Attendance Section */}
                   {showAttendanceBtn && (
                     <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 mb-4">
-                      <h4 className="font-bold text-primary mb-2">📋 Mark Your Attendance</h4>
+                      <h4 className="font-bold text-primary mb-2">Mark Your Attendance</h4>
                       {userAttendance ? (
                         <p className="text-sm text-green-600 font-semibold mb-2">
-                          ✅ You marked: {userAttendance.status.toUpperCase()}
+                          You marked: {userAttendance.status.toUpperCase()}
                         </p>
                       ) : (
                         <p className="text-sm text-gray-600 mb-3">Event is happening now or today!</p>
@@ -270,7 +270,7 @@ export default function EventsPage() {
                               : 'bg-green-100 text-green-700 hover:bg-green-200'
                           }`}
                         >
-                          ✅ Present
+                          Present
                         </button>
                         <button
                           onClick={() => markAttendance(event._id, 'late')}

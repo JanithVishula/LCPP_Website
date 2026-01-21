@@ -1,19 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useSearchParams } from 'next/navigation';
 
 export default function AboutPage() {
-  const searchParams = useSearchParams();
-  const sectionParam = searchParams.get('section');
   const [activeSection, setActiveSection] = useState('lionism');
   const parallaxRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (sectionParam) {
-      setActiveSection(sectionParam);
-    }
-  }, [sectionParam]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -396,6 +387,7 @@ export default function AboutPage() {
                 </div>
               </div>
             </div>
+            </div>
           </div>
         )}
 
@@ -490,7 +482,6 @@ export default function AboutPage() {
                 </div>
               </div>
 
-            </div>
             </div>
           </div>
         )}

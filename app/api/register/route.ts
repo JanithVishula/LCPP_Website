@@ -44,10 +44,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Only admin can create admin/officer accounts
-    let userRole = 'member';
+    let userRole: 'member' | 'admin' | 'officer' = 'member';
     if (role && session.user.role === 'admin') {
       if (['admin', 'officer', 'member'].includes(role)) {
-        userRole = role;
+        userRole = role as 'member' | 'admin' | 'officer';
       }
     }
 

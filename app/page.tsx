@@ -1,10 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Timeline3D from '@/components/Timeline3D';
 
 export default function Home() {
   const parallaxRef = useRef<HTMLDivElement>(null);
+  const [expandedSection, setExpandedSection] = useState<'mission' | 'vision' | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,10 +46,10 @@ export default function Home() {
             We are young leaders committed to serving our community and making a positive impact.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-4">
-            <Link href="/join" className="w-full sm:w-auto bg-gold text-primary hover:bg-gold-dark hover:text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105 text-center">
+            <Link href="/join" className="w-full sm:w-auto bg-gold text-primary hover:bg-primary hover:text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105 text-center">
               Join Our Club
             </Link>
-            <Link href="/projects" className="w-full sm:w-auto bg-transparent border-3 border-gold text-gold hover:bg-gold hover:text-primary font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full shadow-xl transition duration-300 transform hover:scale-105 text-center">
+            <Link href="/projects" className="w-full sm:w-auto bg-gold text-primary hover:bg-primary hover:text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full shadow-xl transition duration-300 transform hover:scale-105 text-center">
               View Projects
             </Link>
           </div>
@@ -97,45 +99,60 @@ export default function Home() {
 
       {/* Our Club Section */}
       <section className="py-12 md:py-20 bg-gradient-to-b from-white to-blue-50">
+        {/* Full Width Parallax Hero Section */}
+        <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] h-[70vh] min-h-[600px] overflow-hidden mb-12">
+          <div 
+            ref={parallaxRef}
+            className="absolute inset-0 w-full h-[120%] bg-contain bg-no-repeat bg-center"
+            style={{
+              backgroundImage: 'url(/se.jpg)',
+              backgroundSize: '100% auto',
+              top: '-10%',
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent flex items-end">
+            <div className="container mx-auto px-4">
+              <div className="p-8 text-white max-w-5xl">
+                <h3 className="text-4xl md:text-5xl font-bold mb-2">Empowering Youth, Serving Communities</h3>
+                <p className="text-xl md:text-2xl">Making a difference since our establishment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-8 md:mb-12 text-center">About Our Club</h2>
           
           <div className="space-y-8 md:space-y-12">
-            {/* Parallax Hero Section */}
-            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-2xl shadow-2xl">
-              <div 
-                ref={parallaxRef}
-                className="absolute inset-0 w-full h-[500px] sm:h-[600px] md:h-[800px] bg-cover bg-center"
-                style={{
-                  backgroundImage: 'url(/se.jpg)',
-                  top: '-100px',
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent flex items-end">
-                <div className="p-4 sm:p-6 md:p-8 text-white">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 md:mb-2">Empowering Youth, Serving Communities</h3>
-                  <p className="text-base sm:text-lg md:text-xl">Making a difference since our establishment</p>
-                </div>
-              </div>
-            </div>
-
             {/* Mission & Vision */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-              <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-5 md:p-6">
+              <div 
+                onClick={() => setExpandedSection(expandedSection === 'mission' ? null : 'mission')}
+                className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-5 md:p-6 cursor-pointer hover:shadow-xl transition-all transform hover:scale-[1.02]"
+              >
                 <h3 className="text-xl md:text-2xl font-bold text-primary mb-3 md:mb-4">Our Mission</h3>
-                <p className="text-primary text-sm md:text-base lg:text-lg leading-relaxed">
+                <p className={`text-primary text-sm md:text-base lg:text-lg leading-relaxed transition-all ${expandedSection === 'mission' ? 'block' : 'line-clamp-3'}`}>
                   Leo Club of Pannipitiya Paradise is dedicated to empowering young leaders to serve their 
                   communities, build friendships, and develop essential life skills. We believe in creating 
                   positive change through meaningful service projects and leadership development.
                 </p>
+                {expandedSection !== 'mission' && (
+                  <p className="text-gold text-sm mt-2 font-semibold">Click to read more...</p>
+                )}
               </div>
 
-              <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-5 md:p-6">
+              <div 
+                onClick={() => setExpandedSection(expandedSection === 'vision' ? null : 'vision')}
+                className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-5 md:p-6 cursor-pointer hover:shadow-xl transition-all transform hover:scale-[1.02]"
+              >
                 <h3 className="text-xl md:text-2xl font-bold text-primary mb-3 md:mb-4">Our Vision</h3>
-                <p className="text-primary text-sm md:text-base lg:text-lg leading-relaxed">
+                <p className={`text-primary text-sm md:text-base lg:text-lg leading-relaxed transition-all ${expandedSection === 'vision' ? 'block' : 'line-clamp-3'}`}>
                   To be the leading youth service organization in our community, inspiring young people 
                   to make a lasting impact through service, leadership, and community engagement.
                 </p>
+                {expandedSection !== 'vision' && (
+                  <p className="text-gold text-sm mt-2 font-semibold">Click to read more...</p>
+                )}
               </div>
             </div>
 
@@ -167,8 +184,8 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-xl md:text-2xl flex-shrink-0">
-                      📚
+                    <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
+                      EDU
                     </div>
                     <h4 className="text-lg md:text-xl font-bold text-primary">Education</h4>
                   </div>
@@ -176,8 +193,8 @@ export default function Home() {
                 </div>
                 <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-xl md:text-2xl flex-shrink-0">
-                      🌱
+                    <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
+                      ENV
                     </div>
                     <h4 className="text-lg md:text-xl font-bold text-primary">Environment</h4>
                   </div>
@@ -185,8 +202,8 @@ export default function Home() {
                 </div>
                 <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-xl md:text-2xl flex-shrink-0">
-                      🤝
+                    <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
+                      COM
                     </div>
                     <h4 className="text-lg md:text-xl font-bold text-primary">Community Service</h4>
                   </div>
@@ -194,8 +211,8 @@ export default function Home() {
                 </div>
                 <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-xl md:text-2xl flex-shrink-0">
-                      💪
+                    <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
+                      LEAD
                     </div>
                     <h4 className="text-lg md:text-xl font-bold text-primary">Leadership Development</h4>
                   </div>
@@ -206,6 +223,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 3D Timeline Section */}
+      <Timeline3D />
     </div>
   );
 }

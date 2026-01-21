@@ -38,7 +38,7 @@ export default function ReviewSuggestionsPage() {
   const router = useRouter();
   const [suggestions, setSuggestions] = useState<ProjectSuggestion[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('pending');
+  const [filter, setFilter] = useState<'all' | 'pending' | 'approved' | 'rejected' | 'under-review'>('pending');
   const [selectedSuggestion, setSelectedSuggestion] = useState<ProjectSuggestion | null>(null);
   const [reviewNotes, setReviewNotes] = useState('');
   const [processing, setProcessing] = useState(false);

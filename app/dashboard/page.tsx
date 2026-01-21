@@ -88,13 +88,13 @@ export default function DashboardPage() {
             <p className="text-xl text-gold">Member Dashboard</p>
             <div className="mt-4 flex flex-wrap gap-4 text-sm">
               <span className="bg-white/20 px-3 py-1 rounded-full">
-                📧 {stats.user.email}
+                {stats.user.email}
               </span>
               <span className="bg-white/20 px-3 py-1 rounded-full">
-                🎫 {stats.user.membershipNumber}
+                {stats.user.membershipNumber}
               </span>
               <span className="bg-white/20 px-3 py-1 rounded-full capitalize">
-                👤 {stats.user.role}
+                {stats.user.role}
               </span>
             </div>
           </div>
@@ -125,7 +125,7 @@ export default function DashboardPage() {
             <div className="bg-white border-2 border-primary rounded-xl p-6">
               <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2">
                 <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center">
-                  <span className="text-primary text-xl">📅</span>
+                  <span className="text-primary text-xl">CAL</span>
                 </div>
                 Upcoming Events
               </h2>
@@ -133,9 +133,9 @@ export default function DashboardPage() {
                 {stats.upcomingEvents.map((event, index) => (
                   <div key={index} className="border-l-4 border-gold pl-4 py-2">
                     <h3 className="font-bold text-primary">{event.title}</h3>
-                    <p className="text-sm text-gray-600">📍 {event.location}</p>
+                    <p className="text-sm text-gray-600">{event.location}</p>
                     <p className="text-sm text-gray-600">
-                      🕐 {new Date(event.date).toLocaleDateString()} at {event.time}
+                      {new Date(event.date).toLocaleDateString()} at {event.time}
                     </p>
                   </div>
                 ))}
@@ -146,7 +146,7 @@ export default function DashboardPage() {
             <div className="bg-white border-2 border-primary rounded-xl p-6">
               <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2">
                 <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center">
-                  <span className="text-primary text-xl">🏆</span>
+                  <span className="text-primary text-xl">ACT</span>
                 </div>
                 Recent Activities
               </h2>
@@ -154,9 +154,9 @@ export default function DashboardPage() {
                 {stats.recentActivities.map((activity, index) => (
                   <div key={index} className="border-l-4 border-primary pl-4 py-2">
                     <h3 className="font-bold text-primary">{activity.title}</h3>
-                    <p className="text-sm text-gray-600">🏷️ {activity.type}</p>
+                    <p className="text-sm text-gray-600">{activity.type}</p>
                     <p className="text-sm text-gray-600">
-                      📆 {new Date(activity.date).toLocaleDateString()} • ⏱️ {activity.hours} hours
+                      {new Date(activity.date).toLocaleDateString()} • {activity.hours} hours
                     </p>
                   </div>
                 ))}

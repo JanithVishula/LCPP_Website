@@ -8,9 +8,10 @@ import { ObjectId } from 'mongodb';
 // PUT /api/announcements/[id] - Update announcement
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
@@ -57,9 +58,10 @@ export async function PUT(
 // DELETE /api/announcements/[id] - Delete announcement
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
