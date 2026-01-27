@@ -178,6 +178,33 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Photo Gallery Section */}
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">Our Club in Action</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div className="group overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02]">
+                  <div className="relative h-64 md:h-80 overflow-hidden">
+                    <img 
+                      src="/120.jpg" 
+                      alt="Leo Club Activities" 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+                </div>
+                <div className="group overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02]">
+                  <div className="relative h-64 md:h-80 overflow-hidden">
+                    <img 
+                      src="/121.jpg" 
+                      alt="Community Service" 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Focus Areas */}
             <div>
               <h3 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">Our Focus Areas</h3>

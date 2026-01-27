@@ -111,22 +111,25 @@ const leoYearProjects: TimelineEvent[] = [
 ];
 
 const categoryColors: Record<string, { bg: string; border: string; text: string }> = {
-  Meeting: { bg: 'bg-purple-100', border: 'border-purple-500', text: 'text-purple-700' },
+  Meeting: { bg: 'bg-blue-100', border: 'border-primary', text: 'text-primary' },
   Education: { bg: 'bg-blue-100', border: 'border-blue-500', text: 'text-blue-700' },
-  Environment: { bg: 'bg-green-100', border: 'border-green-500', text: 'text-green-700' },
-  Health: { bg: 'bg-red-100', border: 'border-red-500', text: 'text-red-700' },
-  Community: { bg: 'bg-yellow-100', border: 'border-yellow-500', text: 'text-yellow-700' },
-  Leadership: { bg: 'bg-indigo-100', border: 'border-indigo-500', text: 'text-indigo-700' },
-  Sports: { bg: 'bg-orange-100', border: 'border-orange-500', text: 'text-orange-700' }
+  Environment: { bg: 'bg-blue-50', border: 'border-primary', text: 'text-primary' },
+  Health: { bg: 'bg-gold/20', border: 'border-gold', text: 'text-gray-800' },
+  Community: { bg: 'bg-gold/30', border: 'border-gold', text: 'text-gray-800' },
+  Leadership: { bg: 'bg-blue-100', border: 'border-blue-600', text: 'text-blue-800' },
+  Sports: { bg: 'bg-gold/20', border: 'border-gold-dark', text: 'text-gray-800' }
 };
 
 export default function Timeline3D() {
   const [activeIndex, setActiveIndex] = useState(6); // Current month (January 2026)
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const currentIndex = hoverIndex ?? activeIndex;
 
   return (
     <div className="w-full py-12 md:py-20 bg-gradient-to-br from-blue-50 via-white to-blue-50">
@@ -146,13 +149,13 @@ export default function Timeline3D() {
           <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-gold to-primary hidden md:block"></div>
 
           {/* Timeline Items */}
-          <div className="space-y-8 md:space-y-12">
+          <div className="space-y-2 md:space-y-3">
             {leoYearProjects.map((event, index) => {
               const colors = categoryColors[event.category];
               const isLeft = index % 2 === 0;
-              const isActive = index === activeIndex;
-              const isPast = index < activeIndex;
-              const isFuture = index > activeIndex;
+              const isActive = index === currentIndex;
+              const isPast = index < currentIndex;
+              const isFuture = index > currentIndex;
 
               return (
                 <div
@@ -161,36 +164,119 @@ export default function Timeline3D() {
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
-                  onMouseEnter={() => setActiveIndex(index)}
+                  onMouseEnter={() => setHoverIndex(index)}
+                  onMouseLeave={() => setHoverIndex(null)}
                 >
                   {/* Desktop Layout */}
-                  <div className="hidden md:flex items-center">
-                    {/* Left Side */}
-                    <div className={`w-5/12 ${isLeft ? 'text-right pr-8' : 'order-3 text-left pl-8'}`}>
-                      <div
-                        className={`inline-block bg-white rounded-2xl shadow-lg p-6 border-2 transition-all duration-500 transform ${
-                          isActive
-                            ? `${colors.border} scale-110 shadow-2xl`
-                            : isPast
-                            ? 'border-gray-300 opacity-70'
-                            : 'border-gray-200 opacity-60'
-                        } hover:scale-105 cursor-pointer`}
-                      >
-                        <div className={`inline-block px-4 py-1 rounded-full text-sm font-bold mb-3 ${colors.bg} ${colors.text}`}>
-                          {event.category}
-                        </div>
-                        <h3 className={`text-xl font-bold mb-2 ${isActive ? 'text-primary' : 'text-gray-700'}`}>
-                          {event.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm mb-2">{event.description}</p>
-                        <p className="text-gold font-semibold text-sm">{event.month}</p>
+                  <div className="hidden md:block">
+                    <div className="grid grid-cols-2 items-center gap-x-28">
+                      {/* Left Column */}
+                      <div className={`flex ${isLeft ? 'justify-end pr-24' : 'justify-end pr-24'}`}>
+                        {isLeft && (
+                          <div
+                            className={`relative inline-block bg-white rounded-2xl shadow-lg p-6 border-2 transition-all duration-500 transform ${
+                              isActive
+                                ? `${colors.border} scale-110 shadow-2xl`
+                                : isPast
+                                ? 'border-gray-300 opacity-70'
+                                : 'border-gray-200 opacity-60'
+                            } hover:scale-105 cursor-pointer`}
+                            onClick={() => setActiveIndex(index)}
+                          >
+                            {/* Action / Light Buttons (Left side) */}
+                            <div className="absolute top-6 -left-4 -translate-x-full hidden md:flex flex-col gap-2">
+                              <button
+                                type="button"
+                                aria-label="Select timeline item"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setActiveIndex(index);
+                                }}
+                                className="w-10 h-10 rounded-full bg-white border-2 border-primary text-primary shadow hover:bg-blue-50 transition"
+                              >
+                                <span className="font-bold">Go</span>
+                              </button>
+                              <button
+                                type="button"
+                                aria-label="Highlight timeline item"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setActiveIndex(index);
+                                }}
+                                className="w-10 h-10 rounded-full bg-gold/90 border-2 border-gold text-primary shadow hover:bg-gold transition"
+                              >
+                                <span className="font-bold">★</span>
+                              </button>
+                            </div>
+
+                            <div className={`inline-block px-4 py-1 rounded-full text-sm font-bold mb-3 ${colors.bg} ${colors.text}`}>
+                              {event.category}
+                            </div>
+                            <h3 className={`text-xl font-bold mb-2 ${isActive ? 'text-primary' : 'text-gray-700'}`}>
+                              {event.title}
+                            </h3>
+                            <p className="text-gray-600 text-sm mb-2">{event.description}</p>
+                            <p className="text-gold font-semibold text-sm">{event.month}</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Right Column */}
+                      <div className="flex justify-start pl-32">
+                        {!isLeft && (
+                          <div
+                            className={`relative inline-block bg-white rounded-2xl shadow-lg p-6 border-2 transition-all duration-500 transform ${
+                              isActive
+                                ? `${colors.border} scale-110 shadow-2xl`
+                                : isPast
+                                ? 'border-gray-300 opacity-70'
+                                : 'border-gray-200 opacity-60'
+                            } hover:scale-105 cursor-pointer`}
+                            onClick={() => setActiveIndex(index)}
+                          >
+                            {/* Action / Light Buttons (Right side) */}
+                            <div className="absolute top-6 -right-4 translate-x-full hidden md:flex flex-col gap-2">
+                              <button
+                                type="button"
+                                aria-label="Select timeline item"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setActiveIndex(index);
+                                }}
+                                className="w-10 h-10 rounded-full bg-white border-2 border-primary text-primary shadow hover:bg-blue-50 transition"
+                              >
+                                <span className="font-bold">Go</span>
+                              </button>
+                              <button
+                                type="button"
+                                aria-label="Highlight timeline item"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setActiveIndex(index);
+                                }}
+                                className="w-10 h-10 rounded-full bg-gold/90 border-2 border-gold text-primary shadow hover:bg-gold transition"
+                              >
+                                <span className="font-bold">★</span>
+                              </button>
+                            </div>
+
+                            <div className={`inline-block px-4 py-1 rounded-full text-sm font-bold mb-3 ${colors.bg} ${colors.text}`}>
+                              {event.category}
+                            </div>
+                            <h3 className={`text-xl font-bold mb-2 ${isActive ? 'text-primary' : 'text-gray-700'}`}>
+                              {event.title}
+                            </h3>
+                            <p className="text-gray-600 text-sm mb-2">{event.description}</p>
+                            <p className="text-gold font-semibold text-sm">{event.month}</p>
+                          </div>
+                        )}
                       </div>
                     </div>
 
-                    {/* Center Circle */}
-                    <div className="relative z-10 flex-shrink-0 order-2">
+                    {/* Center Circle (stays on the fixed middle line) */}
+                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                       <div
-                        className={`w-8 h-8 rounded-full border-4 transition-all duration-500 ${
+                        className={`relative w-8 h-8 rounded-full border-4 transition-all duration-500 ${
                           isActive
                             ? 'bg-gold border-primary scale-150 shadow-lg'
                             : isPast
@@ -203,9 +289,6 @@ export default function Timeline3D() {
                         )}
                       </div>
                     </div>
-
-                    {/* Right Side */}
-                    <div className={`w-5/12 ${!isLeft ? 'text-right pr-8' : 'order-1 text-left pl-8'}`}></div>
                   </div>
 
                   {/* Mobile Layout */}
@@ -239,23 +322,13 @@ export default function Timeline3D() {
                       </div>
                     </div>
                     {index < leoYearProjects.length - 1 && (
-                      <div className="ml-3 w-0.5 h-8 bg-gradient-to-b from-primary to-gold"></div>
+                      <div className="ml-3 w-0.5 h-4 bg-gradient-to-b from-primary to-gold"></div>
                     )}
                   </div>
                 </div>
               );
             })}
           </div>
-        </div>
-
-        {/* Legend */}
-        <div className="mt-12 flex flex-wrap justify-center gap-3">
-          {Object.entries(categoryColors).map(([category, colors]) => (
-            <div key={category} className="flex items-center gap-2">
-              <div className={`w-4 h-4 rounded-full border-2 ${colors.border} ${colors.bg}`}></div>
-              <span className="text-sm text-gray-700 font-medium">{category}</span>
-            </div>
-          ))}
         </div>
       </div>
     </div>
