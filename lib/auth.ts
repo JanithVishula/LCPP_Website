@@ -12,31 +12,31 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Please enter email and password");
+          return null;
         }
 
-        const user = await findUserByEmail(credentials.email);
-        
-        if (!user) {
-          throw new Error("No user found with this email");
-        }
+        try {
+          const user = await findUserByEmail(credentials.email);
 
-        if (!user.active) {
-          throw new Error("Your account has been deactivated. Please contact admin.");
-        }
+          if (!user || !user.active) {
+            return null;
+          }
 
-        const isValid = await verifyPassword(credentials.password, user.password);
-        
-        if (!isValid) {
-          throw new Error("Invalid password");
-        }
+          const isValid = await verifyPassword(credentials.password, user.password);
 
-        return {
-          id: user._id!.toString(),
-          email: user.email,
-          name: user.name,
-          role: user.role,
-        };
+          if (!isValid) {
+            return null;
+          }
+
+          return {
+            id: user._id!.toString(),
+            email: user.email,
+            name: user.name,
+            role: user.role,
+          };
+        } catch {
+          return null;
+        }
       }
     })
   ],

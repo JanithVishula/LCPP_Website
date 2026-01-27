@@ -25,7 +25,15 @@ export default function LoginPage() {
       });
 
       if (result?.error) {
-        setError(result.error);
+        const friendly =
+          result.error === 'CredentialsSignin'
+            ? 'Invalid email or password.'
+            : result.error === 'AccessDenied'
+            ? 'Access denied.'
+            : result.error === 'Configuration'
+            ? 'Authentication is not configured correctly.'
+            : result.error;
+        setError(friendly);
       } else if (result?.ok) {
         router.push('/dashboard');
         router.refresh();

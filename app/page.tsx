@@ -6,21 +6,25 @@ import Timeline3D from '@/components/Timeline3D';
 
 export default function Home() {
   const parallaxRef = useRef<HTMLDivElement>(null);
+  const parallaxRef2 = useRef<HTMLDivElement>(null);
   const [expandedSection, setExpandedSection] = useState<'mission' | 'vision' | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (parallaxRef.current) {
-        const scrolled = window.pageYOffset;
-        const parallaxElement = parallaxRef.current;
+      const scrolled = window.pageYOffset;
+
+      const applyParallax = (parallaxElement: HTMLDivElement) => {
         const rect = parallaxElement.getBoundingClientRect();
         const elementTop = rect.top + scrolled;
         const scrollPosition = scrolled - elementTop;
-        
+
         if (scrollPosition > -500 && scrollPosition < rect.height + 500) {
           parallaxElement.style.transform = `translateY(${scrollPosition * 0.5}px)`;
         }
-      }
+      };
+
+      if (parallaxRef.current) applyParallax(parallaxRef.current);
+      if (parallaxRef2.current) applyParallax(parallaxRef2.current);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -32,7 +36,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative text-white py-20 md:py-32 pt-32 md:pt-44 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/image%2001.jpg)' }}></div>
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/120.jpg)' }}></div>
           <div className="absolute inset-0 bg-primary/70"></div>
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -105,7 +109,7 @@ export default function Home() {
             ref={parallaxRef}
             className="absolute inset-0 w-full h-[120%] bg-contain bg-no-repeat bg-center"
             style={{
-              backgroundImage: 'url(/se.jpg)',
+              backgroundImage: 'url(/Home%20.jpg)',
               backgroundSize: '100% auto',
               top: '-10%',
             }}
@@ -181,27 +185,17 @@ export default function Home() {
             {/* Photo Gallery Section */}
             <div>
               <h3 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">Our Club in Action</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <div className="group overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02]">
-                  <div className="relative h-64 md:h-80 overflow-hidden">
-                    <img 
-                      src="/120.jpg" 
-                      alt="Leo Club Activities" 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </div>
-                </div>
-                <div className="group overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02]">
-                  <div className="relative h-64 md:h-80 overflow-hidden">
-                    <img 
-                      src="/121.jpg" 
-                      alt="Community Service" 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </div>
-                </div>
+              <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] h-[70vh] min-h-[600px] overflow-hidden">
+                <div
+                  ref={parallaxRef2}
+                  className="absolute inset-0 w-full h-[120%] bg-contain bg-no-repeat bg-center"
+                  style={{
+                    backgroundImage: 'url(/image%2002.jpg)',
+                    backgroundSize: '100% auto',
+                    top: '-10%',
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent"></div>
               </div>
             </div>
 
