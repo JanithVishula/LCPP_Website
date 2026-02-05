@@ -14,7 +14,11 @@ export default function Navbar() {
         <div className="flex justify-between items-center py-3">
           {/* Logo/Brand - Far Left Corner */}
           <div className="flex-shrink-0 flex items-center gap-3">
-            <img src="/Screenshot 2026-01-08 015922.png" alt="Leo Club Logo" className="h-12 w-12 object-contain" />
+            <img
+              src="/Project%20Images/General%20Images/Screenshot%202026-01-08%20015922.png"
+              alt="Leo Club Logo"
+              className="h-12 w-12 object-contain"
+            />
             <Link href="/" className="text-2xl font-bold hover:scale-105 transition-transform">
               <span className="text-gold">Leo Club</span> of Pannipitiya Paradise
             </Link>

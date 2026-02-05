@@ -131,9 +131,24 @@ export default function ProjectsPage() {
   const projects2025_26 = [
     {
       id: 1,
-      title: "Upcoming Projects",
-      date: "2025-26",
-      description: "Stay tuned for exciting new projects in the 2025-26 Leoistic year!",
+      title: 'ELITE 25 Installation Ceremony',
+      date: '20/09/2025',
+      description:
+        'The installation ceremony of Leo Club ELITE 25, held at Vidma House Boralesgamuwa, formally inducted the new office bearers, recognized outgoing members, and engaged guests and community stakeholders to strengthen leadership and support for the club\'s future projects.',
+    },
+    {
+      id: 2,
+      title: 'Flood Relief Donation Drive – Paradisayae Sahurda Yathra',
+      date: '21/12/2025',
+      description:
+        'A humanitarian fundraising initiative organized in support of Sirasa Sahana Yathra to provide timely financial assistance for families affected by severe flooding across Sri Lanka, emphasizing transparency, accountability, and national-level impact.',
+    },
+    {
+      id: 3,
+      title: 'International Tree Plantation Drive 5.0',
+      date: '22/11/2025',
+      description:
+        'An international environmental project carried out in collaboration with multiple Leo Clubs worldwide, where members of the Leo Club of Pannipitiya Paradise planted over 30 trees in home gardens and local plots to promote reforestation, sustainability, and global Leo fellowship.',
     },
   ];
 

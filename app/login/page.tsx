@@ -50,7 +50,11 @@ export default function LoginPage() {
       <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl p-8">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <img src="/Screenshot 2026-01-08 015922.png" alt="Leo Club Logo" className="h-20 w-20 object-contain" />
+            <img
+              src="/Project%20Images/General%20Images/Screenshot%202026-01-08%20015922.png"
+              alt="Leo Club Logo"
+              className="h-20 w-20 object-contain"
+            />
           </div>
           <h1 className="text-3xl font-bold text-primary mb-2">Member Login</h1>
           <p className="text-primary">Access your Leo Club member portal</p>

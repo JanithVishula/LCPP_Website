@@ -260,7 +260,7 @@ export default function AboutPage() {
                 ref={parallaxRef}
                 className="absolute inset-0 w-full h-[120%] bg-contain bg-no-repeat bg-center"
                 style={{
-                  backgroundImage: 'url(/se.jpg)',
+                  backgroundImage: 'url(/Project%20Images/General%20Images/se.jpg)',
                   backgroundSize: '100% auto',
                   top: '-10%',
                 }}

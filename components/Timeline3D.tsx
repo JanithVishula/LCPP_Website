@@ -13,6 +13,7 @@ interface TimelineEvent {
   summary?: string;
   details?: Array<{ label: string; value: string }>;
   hoverPreviewImage?: string;
+  galleryUrls?: string[];
   gallery?: {
     prefix: string;
     ext: 'jpg' | 'jpeg' | 'png' | 'webp';
@@ -47,8 +48,13 @@ const leoYearProjects: TimelineEvent[] = [
       { label: 'Service Hours', value: '20 HRS' },
       { label: 'Participation', value: 'Leos – 10' }
     ],
-    hoverPreviewImage: '/SadahamPuja01.jpeg',
-    gallery: { prefix: '/SadahamPuja', ext: 'jpeg', max: 20, pad: 2 }
+    hoverPreviewImage: '/Project%20Images/Sadaham%20Puja%202025/SadahamPuja01.jpeg',
+    gallery: {
+      prefix: '/Project%20Images/Sadaham%20Puja%202025/SadahamPuja',
+      ext: 'jpeg',
+      max: 20,
+      pad: 2,
+    }
   },
   {
     id: 2,
@@ -61,10 +67,47 @@ const leoYearProjects: TimelineEvent[] = [
   {
     id: 3,
     month: 'Sep 2025',
-    title: 'Environmental Clean-up',
-    description: 'Beach and park cleanup campaign',
-    category: 'Environment',
-    date: 'September 2025'
+    title: 'Senehe Piruna Pitu – 06 Sep 2025',
+    description: 'Supporting underprivileged students by donating 1,000 CR books (120 pages).',
+    category: 'Education',
+    date: '2025-09-06',
+    summary:
+      '“Senehe Piruna Pitu” was conducted to support underprivileged students at Mahiyanganaya Kovilyaya Vidyalaya by providing essential educational materials. With the support of the Yuthukama Organization and additional donors, Leos participated in distributing 1,000 CR books, uplifting learning opportunities and strengthening community collaboration.',
+    details: [
+      { label: 'Project Type', value: 'Club Project' },
+      { label: 'Date', value: '2025-09-06' },
+      { label: 'Venue', value: 'Mahiyanganaya Kovilyaya Vidyalaya' },
+      { label: 'Was the project organized on behalf of Leo District?', value: 'No' },
+      { label: 'Was the project organized on behalf of Leo Multiple District?', value: 'No' },
+      { label: 'Project Chairman', value: 'Vimuth Methmina' },
+      { label: 'Project Secretary', value: 'Anuga Kumarajeewa' },
+      { label: 'Project Treasurer', value: 'Onel Herath' },
+      {
+        label: 'Project Categories',
+        value: 'Best Project for Quality Education & Literacy; Best Project for Spotlight on Children'
+      },
+      { label: 'No. of Beneficiaries', value: '200' },
+      { label: 'Project Value', value: '176,545.00 LKR' },
+      { label: 'Mode of Funds Raised', value: 'Donation' },
+      { label: 'Service Hours', value: '30 HRS' },
+      { label: 'Project Participation', value: 'Leos: 4; Outsiders: 6' }
+    ],
+    hoverPreviewImage: '/Project%20Images/Senehe%20Piruna%20Pitu/202509090025441359396179.jpeg',
+    galleryUrls: [
+      '/Project%20Images/Senehe%20Piruna%20Pitu/202509090025441359396179.jpeg',
+      '/Project%20Images/Senehe%20Piruna%20Pitu/20250909114736638600007.jpeg',
+      '/Project%20Images/Senehe%20Piruna%20Pitu/20250909114833543531545.jpeg',
+      '/Project%20Images/Senehe%20Piruna%20Pitu/202509091153241455692918.jpeg',
+      '/Project%20Images/Senehe%20Piruna%20Pitu/202509091154452002035646.jpeg',
+      '/Project%20Images/Senehe%20Piruna%20Pitu/202510092045521903323878.jpeg',
+      '/Project%20Images/Senehe%20Piruna%20Pitu/202510092046391837341903.jpeg',
+      '/Project%20Images/Senehe%20Piruna%20Pitu/20251009204731781330478.jpeg',
+      '/Project%20Images/Senehe%20Piruna%20Pitu/202510092107132468342.jpeg',
+      '/Project%20Images/Senehe%20Piruna%20Pitu/202510092108021794907401.jpeg',
+      '/Project%20Images/Senehe%20Piruna%20Pitu/202510092111141808225620.jpeg',
+      '/Project%20Images/Senehe%20Piruna%20Pitu/202510092111311643513280.jpeg',
+      '/Project%20Images/Senehe%20Piruna%20Pitu/202510092112051064708016.jpeg'
+    ]
   },
   {
     id: 4,
@@ -279,11 +322,11 @@ function TimelineModal({
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="relative overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
+                <div className="relative overflow-hidden rounded-xl border border-gray-200 bg-black flex items-center justify-center">
                   <img
                     src={images[Math.min(activeImageIndex, images.length - 1)]}
                     alt={`${event.title} image ${activeImageIndex + 1}`}
-                    className="w-full h-[240px] sm:h-[320px] md:h-[420px] object-cover"
+                    className="max-h-[70vh] w-auto h-auto object-contain"
                   />
                 </div>
 
@@ -338,7 +381,9 @@ export default function Timeline3D() {
   const openEvent = openIndex === null ? null : leoYearProjects[openIndex];
 
   const galleryCandidates = useMemo(() => {
-    if (!openEvent?.gallery) return [];
+    if (!openEvent) return [];
+    if (openEvent.galleryUrls && openEvent.galleryUrls.length > 0) return openEvent.galleryUrls;
+    if (!openEvent.gallery) return [];
     return buildGalleryCandidateUrls(openEvent.gallery);
   }, [openEvent]);
 
@@ -347,7 +392,7 @@ export default function Timeline3D() {
     const run = async () => {
       setGalleryActiveIndex(0);
       setGalleryImages([]);
-      if (!openEvent?.gallery) return;
+      if (galleryCandidates.length === 0) return;
 
       setGalleryLoading(true);
       try {
@@ -424,14 +469,14 @@ export default function Timeline3D() {
                                 className={`pointer-events-none absolute top-1/2 -translate-y-1/2 right-full mr-6 hidden lg:block z-20`}
                               >
                                 <div
-                                  className={`w-72 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl transition-all duration-300 ease-out ${
+                                  className={`w-72 overflow-hidden rounded-2xl border border-gray-200 bg-black shadow-2xl transition-all duration-300 ease-out flex items-center justify-center ${
                                     showHoverPreview ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
                                   }`}
                                 >
                                   <img
                                     src={event.hoverPreviewImage}
                                     alt={`${event.title} preview`}
-                                    className="w-full h-48 object-cover"
+                                    className="max-h-48 w-auto h-auto object-contain"
                                   />
                                 </div>
                               </div>
@@ -481,14 +526,14 @@ export default function Timeline3D() {
                                 className={`pointer-events-none absolute top-1/2 -translate-y-1/2 left-full ml-6 hidden lg:block z-20`}
                               >
                                 <div
-                                  className={`w-72 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl transition-all duration-300 ease-out ${
+                                  className={`w-72 overflow-hidden rounded-2xl border border-gray-200 bg-black shadow-2xl transition-all duration-300 ease-out flex items-center justify-center ${
                                     showHoverPreview ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
                                   }`}
                                 >
                                   <img
                                     src={event.hoverPreviewImage}
                                     alt={`${event.title} preview`}
-                                    className="w-full h-48 object-cover"
+                                    className="max-h-48 w-auto h-auto object-contain"
                                   />
                                 </div>
                               </div>

@@ -9,17 +9,17 @@ import AccessibilityControls from "@/components/AccessibilityControls";
 const queensides = localFont({
   src: [
     {
-      path: "../public/QueensidesLight-ZVj3l.ttf",
+      path: "../public/Fonts/QueensidesLight-ZVj3l.ttf",
       weight: '300',
       style: 'normal',
     },
     {
-      path: "../public/Queensides-3z7Ey.ttf",
+      path: "../public/Fonts/Queensides-3z7Ey.ttf",
       weight: '400',
       style: 'normal',
     },
     {
-      path: "../public/QueensidesMedium-x30zV.ttf",
+      path: "../public/Fonts/QueensidesMedium-x30zV.ttf",
       weight: '500',
       style: 'normal',
     },

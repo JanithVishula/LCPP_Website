@@ -36,8 +36,11 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative text-white py-20 md:py-32 pt-32 md:pt-44 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/120.jpg)' }}></div>
-          <div className="absolute inset-0 bg-primary/70"></div>
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: 'url(/Project%20Images/General%20Images/120.jpg)' }}
+          />
+          <div className="absolute inset-0 bg-primary/70" />
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 drop-shadow-lg leading-tight">
@@ -50,10 +53,16 @@ export default function Home() {
             We are young leaders committed to serving our community and making a positive impact.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-4">
-            <Link href="/join" className="w-full sm:w-auto bg-gold text-primary hover:bg-primary hover:text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105 text-center">
+            <Link
+              href="/join"
+              className="w-full sm:w-auto bg-gold text-primary hover:bg-primary hover:text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105 text-center"
+            >
               Join Our Club
             </Link>
-            <Link href="/projects" className="w-full sm:w-auto bg-gold text-primary hover:bg-primary hover:text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full shadow-xl transition duration-300 transform hover:scale-105 text-center">
+            <Link
+              href="/projects"
+              className="w-full sm:w-auto bg-gold text-primary hover:bg-primary hover:text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full shadow-xl transition duration-300 transform hover:scale-105 text-center"
+            >
               View Projects
             </Link>
           </div>
@@ -109,7 +118,7 @@ export default function Home() {
             ref={parallaxRef}
             className="absolute inset-0 w-full h-[120%] bg-contain bg-no-repeat bg-center"
             style={{
-              backgroundImage: 'url(/Home%20.jpg)',
+              backgroundImage: 'url(/Project%20Images/General%20Images/Home%20.jpg)',
               backgroundSize: '100% auto',
               top: '-10%',
             }}
@@ -160,24 +169,114 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Club Highlights */}
+            {/* Club Highlights (Current Leoistic Year) */}
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">Club Highlights</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">2025/26 Leoistic Year at a Glance</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                 <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-5 md:p-6 text-center transform hover:scale-105 transition-transform duration-300">
-                  <div className="text-4xl md:text-5xl font-bold text-primary mb-2">150+</div>
-                  <p className="text-primary text-base md:text-lg font-semibold">Active Members</p>
-                  <p className="text-xs md:text-sm text-gray-600 mt-2">Dedicated volunteers serving the community</p>
+                  <div className="text-4xl md:text-5xl font-bold text-primary mb-2">3</div>
+                  <p className="text-primary text-base md:text-lg font-semibold">Projects Completed</p>
+                  <p className="text-xs md:text-sm text-gray-600 mt-2">Installation, flood relief, and an international tree plantation drive</p>
                 </div>
                 <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-5 md:p-6 text-center transform hover:scale-105 transition-transform duration-300">
-                  <div className="text-4xl md:text-5xl font-bold text-primary mb-2">50+</div>
-                  <p className="text-primary text-base md:text-lg font-semibold">Projects Completed</p>
-                  <p className="text-xs md:text-sm text-gray-600 mt-2">Impactful initiatives across multiple sectors</p>
+                  <div className="text-4xl md:text-5xl font-bold text-primary mb-2">400+</div>
+                  <p className="text-primary text-base md:text-lg font-semibold">Beneficiaries Reached</p>
+                  <p className="text-xs md:text-sm text-gray-600 mt-2">Members, families, and communities across Sri Lanka</p>
                 </div>
                 <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-5 md:p-6 text-center transform hover:scale-105 transition-transform duration-300 sm:col-span-2 md:col-span-1">
-                  <div className="text-4xl md:text-5xl font-bold text-primary mb-2">5000+</div>
-                  <p className="text-primary text-base md:text-lg font-semibold">Lives Touched</p>
-                  <p className="text-xs md:text-sm text-gray-600 mt-2">Community members directly impacted</p>
+                  <div className="text-3xl md:text-4xl font-bold text-primary mb-2">LKR 117,693</div>
+                  <p className="text-primary text-base md:text-lg font-semibold">Project Value & Service</p>
+                  <p className="text-xs md:text-sm text-gray-600 mt-2">117,693 LKR in value and 231 service hours contributed</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 2025/26 Key Projects */}
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4 md:mb-6 text-center">Key Projects This Leoistic Year</h3>
+              <p className="text-sm md:text-base text-primary text-center max-w-3xl mx-auto mb-6 md:mb-8">
+                So far in the 2025/26 Leoistic year, our focus has been on leadership, disaster relief, and environmental sustainability through three impactful projects.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                {/* ELITE 25 Installation Ceremony */}
+                <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6 flex flex-col shadow-sm hover:shadow-xl transition-shadow duration-300">
+                  <h4 className="text-lg md:text-xl font-bold text-primary mb-1">ELITE 25 Installation Ceremony</h4>
+                  <p className="text-xs md:text-sm text-gray-600 mb-3">20 Sep 2025 • Vidma House, Boralesgamuwa • Club Project</p>
+                  <p className="text-sm md:text-base text-primary flex-1 leading-relaxed">
+                    Formally inducted the new office bearers of Leo Club ELITE 25, recognized outgoing members, and strengthened ties with guests and the local community, setting a strong leadership foundation for the year.
+                  </p>
+                  <div className="mt-4 grid grid-cols-2 gap-2 text-xs md:text-sm text-gray-700">
+                    <div>
+                      <div className="font-semibold text-primary">Beneficiaries</div>
+                      <div>50</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-primary">Service Hours</div>
+                      <div>120 HRS</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-primary">Project Value</div>
+                      <div>54,828 LKR</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-primary">Participation</div>
+                      <div>28 Leos, 8+ guests</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Flood Relief Donation Drive – Paradisayae Sahurda Yathra */}
+                <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6 flex flex-col shadow-sm hover:shadow-xl transition-shadow duration-300">
+                  <h4 className="text-lg md:text-xl font-bold text-primary mb-1">Flood Relief Donation Drive</h4>
+                  <p className="text-xs md:text-sm text-gray-600 mb-3">21 Dec 2025 • Colombo • Club Project</p>
+                  <p className="text-sm md:text-base text-primary flex-1 leading-relaxed">
+                    Raised and handed over donations to Sirasa Sahana Yathra to support families affected by severe flooding, ensuring funds were directed through a trusted national relief initiative for maximum impact.
+                  </p>
+                  <div className="mt-4 grid grid-cols-2 gap-2 text-xs md:text-sm text-gray-700">
+                    <div>
+                      <div className="font-semibold text-primary">Beneficiaries</div>
+                      <div>150</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-primary">Service Hours</div>
+                      <div>105 HRS</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-primary">Project Value</div>
+                      <div>62,865 LKR</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-primary">Participation</div>
+                      <div>8 Leos</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* International Tree Plantation Drive 5.0 */}
+                <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6 flex flex-col shadow-sm hover:shadow-xl transition-shadow duration-300">
+                  <h4 className="text-lg md:text-xl font-bold text-primary mb-1">International Tree Plantation Drive 5.0</h4>
+                  <p className="text-xs md:text-sm text-gray-600 mb-3">22 Nov 2025 • Piliyandala • International Joint Project</p>
+                  <p className="text-sm md:text-base text-primary flex-1 leading-relaxed">
+                    Planted over 30 plants in home gardens and local plots as part of a global twinning initiative, promoting long-term environmental stewardship and strengthening international Leo connections.
+                  </p>
+                  <div className="mt-4 grid grid-cols-2 gap-2 text-xs md:text-sm text-gray-700">
+                    <div>
+                      <div className="font-semibold text-primary">Beneficiaries</div>
+                      <div>200</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-primary">Service Hours</div>
+                      <div>6 HRS</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-primary">Project Value</div>
+                      <div>0 LKR (personal funds)</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-primary">Participation</div>
+                      <div>6 Leos</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -190,7 +289,7 @@ export default function Home() {
                   ref={parallaxRef2}
                   className="absolute inset-0 w-full h-[120%] bg-contain bg-no-repeat bg-center"
                   style={{
-                    backgroundImage: 'url(/image%2002.jpg)',
+                    backgroundImage: 'url(/Project%20Images/General%20Images/image%2002.jpg)',
                     backgroundSize: '100% auto',
                     top: '-10%',
                   }}
