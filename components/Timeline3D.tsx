@@ -37,16 +37,8 @@ const leoYearProjects: TimelineEvent[] = [
       { label: 'Date', value: '2025-07-10' },
       { label: 'Venue', value: 'Vidya Shanthi Maha Pirivena' },
       { label: 'Project Chairman', value: 'Winnath Edirisooriya' },
-      { label: 'Secretary', value: 'Sanaya Dewmini' },
-      { label: 'Treasurer', value: 'Uvin Kaveesh' },
-      {
-        label: 'Categories',
-        value: 'Best Project for Peace, Religious & Cultural Activities; Most Outstanding Service Project'
-      },
-      { label: 'Beneficiaries', value: '50' },
-      { label: 'Mode of Funds', value: 'Donation' },
-      { label: 'Service Hours', value: '20 HRS' },
-      { label: 'Participation', value: 'Leos – 10' }
+      { label: 'Project Secretary', value: 'Sanaya Dewmini' },
+      { label: 'Project Treasurer', value: 'Uvin Kaveesh' }
     ],
     hoverPreviewImage: '/Project%20Images/Sadaham%20Puja%202025/SadahamPuja01.jpeg',
     gallery: {
@@ -56,16 +48,9 @@ const leoYearProjects: TimelineEvent[] = [
       pad: 2,
     }
   },
+ 
   {
     id: 2,
-    month: 'Aug 2025',
-    title: 'Back to School Drive',
-    description: 'Providing school supplies to underprivileged students',
-    category: 'Education',
-    date: 'August 2025'
-  },
-  {
-    id: 3,
     month: 'Sep 2025',
     title: 'Senehe Piruna Pitu – 06 Sep 2025',
     description: 'Supporting underprivileged students by donating 1,000 CR books (120 pages).',
@@ -77,20 +62,9 @@ const leoYearProjects: TimelineEvent[] = [
       { label: 'Project Type', value: 'Club Project' },
       { label: 'Date', value: '2025-09-06' },
       { label: 'Venue', value: 'Mahiyanganaya Kovilyaya Vidyalaya' },
-      { label: 'Was the project organized on behalf of Leo District?', value: 'No' },
-      { label: 'Was the project organized on behalf of Leo Multiple District?', value: 'No' },
       { label: 'Project Chairman', value: 'Vimuth Methmina' },
       { label: 'Project Secretary', value: 'Anuga Kumarajeewa' },
-      { label: 'Project Treasurer', value: 'Onel Herath' },
-      {
-        label: 'Project Categories',
-        value: 'Best Project for Quality Education & Literacy; Best Project for Spotlight on Children'
-      },
-      { label: 'No. of Beneficiaries', value: '200' },
-      { label: 'Project Value', value: '176,545.00 LKR' },
-      { label: 'Mode of Funds Raised', value: 'Donation' },
-      { label: 'Service Hours', value: '30 HRS' },
-      { label: 'Project Participation', value: 'Leos: 4; Outsiders: 6' }
+      { label: 'Project Treasurer', value: 'Onel Herath' }
     ],
     hoverPreviewImage: '/Project%20Images/Senehe%20Piruna%20Pitu/202509090025441359396179.jpeg',
     galleryUrls: [
@@ -109,77 +83,107 @@ const leoYearProjects: TimelineEvent[] = [
       '/Project%20Images/Senehe%20Piruna%20Pitu/202510092112051064708016.jpeg'
     ]
   },
+
+  {
+    id: 3,
+    month: 'Sep 2025',
+    title: 'ELITE 25 Installation Ceremony – 20 Sep 2025',
+    description:
+      'Formal installation ceremony of Leo Club ELITE 25 with leadership transition and recognition of outgoing members.',
+    category: 'Leadership',
+    date: '2025-09-20',
+    summary:
+      'The ELITE 25 Installation Ceremony formally inducted the newly elected office bearers of the Leo Club of Pannipitiya Paradise',
+    details: [
+      { label: 'Project Type', value: 'Club Project' },
+      { label: 'Date', value: '2025-09-20' },
+      { label: 'Venue', value: 'Vidma House, Boralesgamuwa' },
+      { label: 'Project Chairman', value: 'Winnath Edirisooriya' },
+      { label: 'Project Secretary', value: 'Sesadi Dilshara' },
+      { label: 'Project Treasurer', value: 'Hasindu Induwara' },
+    ],
+    hoverPreviewImage: '/Project%20Images/ELITE%2025/202510061423151722794723.jpeg',
+    galleryUrls: [
+      '/Project%20Images/ELITE%2025/202510061423151722794723.jpeg',
+      '/Project%20Images/ELITE%2025/20251006142358729209400.jpeg',
+      '/Project%20Images/ELITE%2025/20251006142438199798937.jpeg',
+      '/Project%20Images/ELITE%2025/20251006142517328323101.jpeg',
+      '/Project%20Images/ELITE%2025/202510061426051118596416.jpeg',
+      '/Project%20Images/ELITE%2025/202510092040312028265676.jpeg',
+      '/Project%20Images/ELITE%2025/202510092041142048999142.jpeg',
+      '/Project%20Images/ELITE%2025/20251009204436256080095.jpeg',
+    ],
+  },
+
   {
     id: 4,
-    month: 'Oct 2025',
-    title: 'Health Awareness Program',
-    description: 'Free health screening and awareness sessions',
-    category: 'Health',
-    date: 'October 2025'
+    month: 'Nov 2025',
+    title: 'International Tree Plantation Drive – 22 Nov 2025',
+    description:
+      'International tree planting initiative supporting reforestation and environmental awareness across multiple Leo clubs.',
+    category: 'Environment',
+    date: '2025-11-22',
+    summary:
+      'The International Tree Plantation Drive 5.0 was a global environmental initiative where the Leo Club of Pannipitiya Paradise joined with international partner clubs to promote reforestation and climate action.',
+    details: [
+      { label: 'Project Type', value: 'Club Project' },
+      { label: 'Date', value: '2025-11-22' },
+      { label: 'Venue', value: 'Piliyandala' },
+      { label: 'Project Chairman', value: 'Winnath Edirisooriya' },
+      { label: 'Project Secretary', value: 'Janith Vishula' },
+      { label: 'Project Treasurer', value: 'Matheesha De Silva' },
+    ],
+    hoverPreviewImage:
+      '/Project%20Images/International%20Tree%20Plantation%20Drive/202601122006121190925964.jpeg',
+    galleryUrls: [
+      '/Project%20Images/International%20Tree%20Plantation%20Drive/202601122006121190925964.jpeg',
+      '/Project%20Images/International%20Tree%20Plantation%20Drive/20260112200737899589340.jpeg',
+      '/Project%20Images/International%20Tree%20Plantation%20Drive/202601122009211639179907.jpeg',
+      '/Project%20Images/International%20Tree%20Plantation%20Drive/202601122009391941820572.jpeg',
+      '/Project%20Images/International%20Tree%20Plantation%20Drive/20260112201117146957406.jpeg',
+      '/Project%20Images/International%20Tree%20Plantation%20Drive/202601122011471161910028.jpeg',
+      '/Project%20Images/International%20Tree%20Plantation%20Drive/202601122012131307866075.jpeg',
+      '/Project%20Images/International%20Tree%20Plantation%20Drive/202601122013451441891787.jpeg',
+      '/Project%20Images/International%20Tree%20Plantation%20Drive/20260112201435665349504.jpeg',
+      '/Project%20Images/International%20Tree%20Plantation%20Drive/20260112201535441753713.jpeg',
+      '/Project%20Images/International%20Tree%20Plantation%20Drive/202601152202091996883195.jpeg',
+    ],
   },
+
   {
     id: 5,
-    month: 'Nov 2025',
-    title: 'Tree Plantation Drive',
-    description: 'Planting 500+ trees in local community',
-    category: 'Environment',
-    date: 'November 2025'
-  },
-  {
-    id: 6,
     month: 'Dec 2025',
-    title: 'Christmas Charity',
-    description: 'Gift distribution to orphanages',
+    title: 'Paradisaye Sahurda Yathra Flood Relief – 21 Dec 2025',
+    description:
+      'Flood relief donation drive supporting Sirasa Sahana Yathra to aid affected communities across Sri Lanka.',
     category: 'Community',
-    date: 'December 2025'
-  },
-  {
-    id: 7,
-    month: 'Jan 2026',
-    title: 'New Year Leadership Workshop',
-    description: 'Skill development workshop for members',
-    category: 'Leadership',
-    date: 'January 2026'
-  },
-  {
-    id: 8,
-    month: 'Feb 2026',
-    title: 'Blood Donation Campaign',
-    description: 'Annual blood donation drive',
-    category: 'Health',
-    date: 'February 2026'
-  },
-  {
-    id: 9,
-    month: 'Mar 2026',
-    title: 'Education Sponsorship',
-    description: 'Scholarship program for deserving students',
-    category: 'Education',
-    date: 'March 2026'
-  },
-  {
-    id: 10,
-    month: 'Apr 2026',
-    title: 'Community Fair',
-    description: 'Annual community service fair',
-    category: 'Community',
-    date: 'April 2026'
-  },
-  {
-    id: 11,
-    month: 'May 2026',
-    title: 'Youth Sports Festival',
-    description: 'Sports event for local youth',
-    category: 'Sports',
-    date: 'May 2026'
-  },
-  {
-    id: 12,
-    month: 'Jun 2026',
-    title: 'End of Year Celebration',
-    description: 'Leo year closing ceremony and awards',
-    category: 'Meeting',
-    date: 'June 2026'
+    date: '2025-12-21',
+    summary:
+      'Paradisaye Sahurda Yathra was a focused flood relief donation drive organized by the Leo Club of Pannipitiya Paradise to support families affected by severe flooding in Sri Lanka.',
+    details: [
+      { label: 'Project Type', value: 'Club Project' },
+      { label: 'Date', value: '2025-12-21' },
+      { label: 'Venue', value: 'Colombo' },
+      { label: 'Project Chairman', value: 'Anuga Kumarajeewa' },
+      { label: 'Project Secretary', value: 'Matheesha De Silva' },
+      { label: 'Project Treasurer', value: 'Hasindu Induwara & Onel Herath' },
+    ],
+    hoverPreviewImage:
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/202601122049011662332658.jpeg',
+    galleryUrls: [
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/202601122049011662332658.jpeg',
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/202601122049571431762039.jpeg',
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/20260112205202223714041.jpeg',
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/202601122052491670935903.jpeg',
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/20260112205440780965981.jpeg',
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/20260112205513186027367.jpeg',
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/202601152223061825038494.jpeg',
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/20260115222720309334382.jpeg',
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/20260115222737689942931.jpeg',
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/20260115223739144643106.jpeg',
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/20260115224205315589977.jpeg',
+      '/Project%20Images/Paradisaye%20Sahurda%20Yathra/20260115232414506820802.jpeg',
+    ],
   }
 ];
 
@@ -454,9 +458,9 @@ export default function Timeline3D() {
                       <div className={`flex ${isLeft ? 'justify-end pr-24' : 'justify-end pr-24'}`}>
                         {isLeft && (
                           <div
-                            className={`relative inline-block bg-white rounded-2xl shadow-lg p-6 border-2 transition-all duration-500 transform ${
+                            className={`relative flex flex-col w-full max-w-lg bg-white rounded-2xl shadow-lg p-6 border-2 md:min-h-40 transition-all duration-500 transform ${
                               isActive
-                                ? `${colors.border} scale-110 shadow-2xl`
+                                ? `${colors.border} shadow-2xl`
                                 : isPast
                                 ? 'border-gray-300 opacity-70'
                                 : 'border-gray-200 opacity-60'
@@ -490,7 +494,7 @@ export default function Timeline3D() {
                             </h3>
                             <p className="text-gray-600 text-sm mb-2">{event.description}</p>
 
-                            <div className="flex items-center justify-between mt-4 gap-4">
+                            <div className="flex items-center justify-between mt-auto pt-4 gap-4">
                               <p className="text-gold font-semibold text-sm">{event.month}</p>
                               <button
                                 type="button"
@@ -511,9 +515,9 @@ export default function Timeline3D() {
                       <div className="flex justify-start pl-32">
                         {!isLeft && (
                           <div
-                            className={`relative inline-block bg-white rounded-2xl shadow-lg p-6 border-2 transition-all duration-500 transform ${
+                            className={`relative flex flex-col w-full max-w-lg bg-white rounded-2xl shadow-lg p-6 border-2 md:min-h-40 transition-all duration-500 transform ${
                               isActive
-                                ? `${colors.border} scale-110 shadow-2xl`
+                                ? `${colors.border} shadow-2xl`
                                 : isPast
                                 ? 'border-gray-300 opacity-70'
                                 : 'border-gray-200 opacity-60'
@@ -547,7 +551,7 @@ export default function Timeline3D() {
                             </h3>
                             <p className="text-gray-600 text-sm mb-2">{event.description}</p>
 
-                            <div className="flex items-center justify-between mt-4 gap-4">
+                            <div className="flex items-center justify-between mt-auto pt-4 gap-4">
                               <p className="text-gold font-semibold text-sm">{event.month}</p>
                               <button
                                 type="button"
@@ -598,7 +602,7 @@ export default function Timeline3D() {
                         ></div>
                       </div>
                       <div
-                        className={`flex-1 bg-white rounded-xl shadow-lg p-5 border-2 transition-all duration-500 ${
+                        className={`flex-1 flex flex-col bg-white rounded-xl shadow-lg p-5 border-2 transition-all duration-500 ${
                           isActive ? `${colors.border} shadow-xl` : 'border-gray-200'
                         }`}
                         onClick={() => setActiveIndex(index)}
@@ -611,7 +615,7 @@ export default function Timeline3D() {
                         </h3>
                         <p className="text-gray-600 text-sm mb-2">{event.description}</p>
 
-                        <div className="flex items-center justify-between mt-3 gap-4">
+                        <div className="flex items-center justify-between mt-auto pt-3 gap-4">
                           <p className="text-gold font-semibold text-sm">{event.month}</p>
                           <button
                             type="button"

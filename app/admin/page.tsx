@@ -157,6 +157,14 @@ export default function AdminPage() {
               <p className="text-gray-600">Approve and track service hours</p>
             </div>
           </Link>
+
+          {/* Membership Applications */}
+          <Link href="/admin/applications">
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-green-500">
+              <h3 className="text-2xl font-bold text-primary mb-2">Membership Applications</h3>
+              <p className="text-gray-600">Review applications submitted from the Join page</p>
+            </div>
+          </Link>
         </div>
 
         {/* Quick Stats Section */}

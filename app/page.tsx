@@ -1,13 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Timeline3D from '@/components/Timeline3D';
 
 export default function Home() {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const parallaxRef2 = useRef<HTMLDivElement>(null);
-  const [expandedSection, setExpandedSection] = useState<'mission' | 'vision' | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -134,156 +133,110 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-8 md:mb-12 text-center">About Our Club</h2>
-          
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 md:mb-8 text-center">About Our Club</h2>
+
+          {/* Club Facts as soft cards */}
+          <div className="mb-10 md:mb-14">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 text-primary">
+              {/* Founding */}
+              <div className="bg-white/90 rounded-2xl border border-primary/10 shadow-soft p-5 md:p-6 lg:p-7 flex flex-col gap-4">
+                <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.18em] text-primary/60">
+                  Founding
+                </p>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-primary/60">Established</p>
+                    <p className="text-lg md:text-xl font-semibold mt-0.5">April 2023</p>
+                  </div>
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-primary/60">Chartered President</p>
+                    <p className="text-lg md:text-xl font-semibold mt-0.5">Leo Lion Thavisha Bandara</p>
+                  </div>
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-primary/60">Parent Club</p>
+                    <p className="text-lg md:text-xl font-semibold mt-0.5">Lions Club of Pannipitiya Paradise</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Leadership */}
+              <div className="bg-white/90 rounded-2xl border border-primary/10 shadow-soft p-5 md:p-6 lg:p-7 flex flex-col gap-4">
+                <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.18em] text-primary/60">
+                  Leadership
+                </p>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-primary/60">Current President</p>
+                    <p className="text-lg md:text-xl font-semibold mt-0.5">Leo Lion Onel Herath</p>
+                  </div>
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-primary/60">Membership</p>
+                    <p className="text-lg md:text-xl font-semibold mt-0.5">64 active and dedicated members</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Identity */}
+              <div className="bg-white/90 rounded-2xl border border-primary/10 shadow-soft p-5 md:p-6 lg:p-7 flex flex-col gap-4">
+                <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.18em] text-primary/60">
+                  Identity
+                </p>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-primary/60">Region &amp; Zone</p>
+                    <p className="text-lg md:text-xl font-semibold mt-0.5">Region 1, Zone 2</p>
+                  </div>
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-primary/60">Parent Club Family</p>
+                    <p className="text-lg md:text-xl font-semibold mt-0.5">Lions Club of Pannipitiya Paradise</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Motto highlight */}
+            <div className="mt-6 md:mt-8 flex justify-center">
+              <div className="inline-flex items-center gap-3 rounded-full bg-primary text-white px-5 py-3 md:px-7 md:py-4 shadow-soft">
+                <span className="text-xs md:text-sm font-medium uppercase tracking-[0.22em] opacity-80">
+                  Motto
+                </span>
+                <span className="text-base md:text-lg lg:text-xl font-semibold">
+                  Grow | Together | Strong
+                </span>
+              </div>
+            </div>
+          </div>
+
           <div className="space-y-8 md:space-y-12">
             {/* Mission & Vision */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-              <div 
-                onClick={() => setExpandedSection(expandedSection === 'mission' ? null : 'mission')}
-                className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-5 md:p-6 cursor-pointer hover:shadow-xl transition-all transform hover:scale-[1.02]"
-              >
-                <h3 className="text-xl md:text-2xl font-bold text-primary mb-3 md:mb-4">Our Mission</h3>
-                <p className={`text-primary text-sm md:text-base lg:text-lg leading-relaxed transition-all ${expandedSection === 'mission' ? 'block' : 'line-clamp-3'}`}>
-                  Leo Club of Pannipitiya Paradise is dedicated to empowering young leaders to serve their 
-                  communities, build friendships, and develop essential life skills. We believe in creating 
-                  positive change through meaningful service projects and leadership development.
-                </p>
-                {expandedSection !== 'mission' && (
-                  <p className="text-gold text-sm mt-2 font-semibold">Click to read more...</p>
-                )}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 lg:gap-20 items-stretch">
+              <div className="bg-white/90 rounded-2xl border border-primary/10 shadow-soft px-5 py-6 md:px-7 md:py-8 text-center transition-all flex flex-col items-center md:-translate-x-4 lg:-translate-x-8">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-primary mb-3 md:mb-4 leading-tight">
+                  Our Mission
+                </h3>
+                <div className="max-w-xl md:max-w-lg lg:max-w-xl mx-auto">
+                  <p className="text-primary text-base md:text-lg lg:text-xl leading-relaxed md:leading-loose">
+                    We empower young people to serve their communities, build meaningful friendships, and
+                    grow as confident leaders through impactful service and development opportunities.
+                  </p>
+                </div>
               </div>
 
-              <div 
-                onClick={() => setExpandedSection(expandedSection === 'vision' ? null : 'vision')}
-                className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-5 md:p-6 cursor-pointer hover:shadow-xl transition-all transform hover:scale-[1.02]"
-              >
-                <h3 className="text-xl md:text-2xl font-bold text-primary mb-3 md:mb-4">Our Vision</h3>
-                <p className={`text-primary text-sm md:text-base lg:text-lg leading-relaxed transition-all ${expandedSection === 'vision' ? 'block' : 'line-clamp-3'}`}>
-                  To be the leading youth service organization in our community, inspiring young people 
-                  to make a lasting impact through service, leadership, and community engagement.
-                </p>
-                {expandedSection !== 'vision' && (
-                  <p className="text-gold text-sm mt-2 font-semibold">Click to read more...</p>
-                )}
-              </div>
-            </div>
-
-            {/* Club Highlights (Current Leoistic Year) */}
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">2025/26 Leoistic Year at a Glance</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-5 md:p-6 text-center transform hover:scale-105 transition-transform duration-300">
-                  <div className="text-4xl md:text-5xl font-bold text-primary mb-2">3</div>
-                  <p className="text-primary text-base md:text-lg font-semibold">Projects Completed</p>
-                  <p className="text-xs md:text-sm text-gray-600 mt-2">Installation, flood relief, and an international tree plantation drive</p>
-                </div>
-                <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-5 md:p-6 text-center transform hover:scale-105 transition-transform duration-300">
-                  <div className="text-4xl md:text-5xl font-bold text-primary mb-2">400+</div>
-                  <p className="text-primary text-base md:text-lg font-semibold">Beneficiaries Reached</p>
-                  <p className="text-xs md:text-sm text-gray-600 mt-2">Members, families, and communities across Sri Lanka</p>
-                </div>
-                <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-xl p-5 md:p-6 text-center transform hover:scale-105 transition-transform duration-300 sm:col-span-2 md:col-span-1">
-                  <div className="text-3xl md:text-4xl font-bold text-primary mb-2">LKR 117,693</div>
-                  <p className="text-primary text-base md:text-lg font-semibold">Project Value & Service</p>
-                  <p className="text-xs md:text-sm text-gray-600 mt-2">117,693 LKR in value and 231 service hours contributed</p>
-                </div>
-              </div>
-            </div>
-
-            {/* 2025/26 Key Projects */}
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4 md:mb-6 text-center">Key Projects This Leoistic Year</h3>
-              <p className="text-sm md:text-base text-primary text-center max-w-3xl mx-auto mb-6 md:mb-8">
-                So far in the 2025/26 Leoistic year, our focus has been on leadership, disaster relief, and environmental sustainability through three impactful projects.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                {/* ELITE 25 Installation Ceremony */}
-                <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6 flex flex-col shadow-sm hover:shadow-xl transition-shadow duration-300">
-                  <h4 className="text-lg md:text-xl font-bold text-primary mb-1">ELITE 25 Installation Ceremony</h4>
-                  <p className="text-xs md:text-sm text-gray-600 mb-3">20 Sep 2025 • Vidma House, Boralesgamuwa • Club Project</p>
-                  <p className="text-sm md:text-base text-primary flex-1 leading-relaxed">
-                    Formally inducted the new office bearers of Leo Club ELITE 25, recognized outgoing members, and strengthened ties with guests and the local community, setting a strong leadership foundation for the year.
+              <div className="bg-white/90 rounded-2xl border border-primary/10 shadow-soft px-5 py-6 md:px-7 md:py-8 text-center transition-all flex flex-col items-center md:translate-x-4 lg:translate-x-8">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-primary mb-3 md:mb-4 leading-tight">
+                  Our Vision
+                </h3>
+                <div className="max-w-xl md:max-w-lg lg:max-w-xl mx-auto">
+                  <p className="text-primary text-base md:text-lg lg:text-xl leading-relaxed md:leading-loose">
+                    To be a leading youth service movement in our community, inspiring Leos to create
+                    lasting change through service, leadership, and teamwork.
                   </p>
-                  <div className="mt-4 grid grid-cols-2 gap-2 text-xs md:text-sm text-gray-700">
-                    <div>
-                      <div className="font-semibold text-primary">Beneficiaries</div>
-                      <div>50</div>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-primary">Service Hours</div>
-                      <div>120 HRS</div>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-primary">Project Value</div>
-                      <div>54,828 LKR</div>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-primary">Participation</div>
-                      <div>28 Leos, 8+ guests</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Flood Relief Donation Drive – Paradisayae Sahurda Yathra */}
-                <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6 flex flex-col shadow-sm hover:shadow-xl transition-shadow duration-300">
-                  <h4 className="text-lg md:text-xl font-bold text-primary mb-1">Flood Relief Donation Drive</h4>
-                  <p className="text-xs md:text-sm text-gray-600 mb-3">21 Dec 2025 • Colombo • Club Project</p>
-                  <p className="text-sm md:text-base text-primary flex-1 leading-relaxed">
-                    Raised and handed over donations to Sirasa Sahana Yathra to support families affected by severe flooding, ensuring funds were directed through a trusted national relief initiative for maximum impact.
-                  </p>
-                  <div className="mt-4 grid grid-cols-2 gap-2 text-xs md:text-sm text-gray-700">
-                    <div>
-                      <div className="font-semibold text-primary">Beneficiaries</div>
-                      <div>150</div>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-primary">Service Hours</div>
-                      <div>105 HRS</div>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-primary">Project Value</div>
-                      <div>62,865 LKR</div>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-primary">Participation</div>
-                      <div>8 Leos</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* International Tree Plantation Drive 5.0 */}
-                <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6 flex flex-col shadow-sm hover:shadow-xl transition-shadow duration-300">
-                  <h4 className="text-lg md:text-xl font-bold text-primary mb-1">International Tree Plantation Drive 5.0</h4>
-                  <p className="text-xs md:text-sm text-gray-600 mb-3">22 Nov 2025 • Piliyandala • International Joint Project</p>
-                  <p className="text-sm md:text-base text-primary flex-1 leading-relaxed">
-                    Planted over 30 plants in home gardens and local plots as part of a global twinning initiative, promoting long-term environmental stewardship and strengthening international Leo connections.
-                  </p>
-                  <div className="mt-4 grid grid-cols-2 gap-2 text-xs md:text-sm text-gray-700">
-                    <div>
-                      <div className="font-semibold text-primary">Beneficiaries</div>
-                      <div>200</div>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-primary">Service Hours</div>
-                      <div>6 HRS</div>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-primary">Project Value</div>
-                      <div>0 LKR (personal funds)</div>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-primary">Participation</div>
-                      <div>6 Leos</div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
 
             {/* Photo Gallery Section */}
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">Our Club in Action</h3>
               <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] h-[70vh] min-h-[600px] overflow-hidden">
                 <div
                   ref={parallaxRef2}
@@ -294,7 +247,16 @@ export default function Home() {
                     top: '-10%',
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent flex items-end">
+                  <div className="container mx-auto px-4 pb-10">
+                    <div className="max-w-5xl text-white p-6 md:p-8">
+                      <h3 className="text-3xl md:text-4xl font-bold mb-2">Our Club in Action</h3>
+                      <p className="text-lg md:text-xl">
+                        Moments from our installation, disaster relief, and environmental projects that define the 2025/26 Leoistic year.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
