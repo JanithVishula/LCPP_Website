@@ -26,7 +26,7 @@ const projectGallery = [
   {
     src: '/Project%20Images/ELITE%2025/202510061423151722794723.jpeg',
     alt: 'ELITE 25 project activity',
-    label: 'ELITE 25 – Youth empowerment and skills development',
+    label: 'ELITE 25 – Annual Club Installation Ceremony',
   },
   {
     src: '/Project%20Images/International%20Tree%20Plantation%20Drive/202601122006121190925964.jpeg',
