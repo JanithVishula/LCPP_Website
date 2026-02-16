@@ -39,7 +39,6 @@ export default function Home() {
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: 'url(/Project%20Images/General%20Images/120.jpg)' }}
           />
-          <div className="absolute inset-0 bg-primary/70" />
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 drop-shadow-lg leading-tight">
@@ -122,7 +121,7 @@ export default function Home() {
               top: '-10%',
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent flex items-end">
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/30 to-transparent flex items-end">
             <div className="container mx-auto px-4">
               <div className="p-8 text-white max-w-5xl">
                 <h3 className="text-4xl md:text-5xl font-bold mb-2">Empowering Youth, Serving Communities</h3>
@@ -247,7 +246,7 @@ export default function Home() {
                     top: '-10%',
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent flex items-end">
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/30 to-transparent flex items-end">
                   <div className="container mx-auto px-4 pb-10">
                     <div className="max-w-5xl text-white p-6 md:p-8">
                       <h3 className="text-3xl md:text-4xl font-bold mb-2">Our Club in Action</h3>

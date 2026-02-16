@@ -70,7 +70,7 @@ export function QuickAccessSidebar() {
 
       {/* Desktop sidebar */}
       <aside
-        className="hidden lg:flex lg:flex-col fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 bg-[#f0f2f5] border-r border-gray-200 shadow-sm z-30"
+        className="hidden lg:flex lg:flex-col fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 bg-white/90 backdrop-blur-sm border-r border-gray-100 shadow-sm z-30"
       >
         <div className="px-4 pt-4 pb-2 border-b border-gray-200 bg-[#f0f2f5]">
           <h2 className="text-xs font-semibold tracking-wide text-gray-500 uppercase">
@@ -90,8 +90,8 @@ export function QuickAccessSidebar() {
             className="absolute inset-0 bg-black/40"
             onClick={() => setOpen(false)}
           />
-          <aside className="absolute left-0 top-0 flex h-full w-72 flex-col bg-[#f0f2f5] border-r border-gray-200 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3 bg-[#f0f2f5]">
+          <aside className="absolute left-0 top-0 flex h-full w-72 flex-col bg-white border-r border-gray-100 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3 bg-white/90 backdrop-blur-sm">
               <div>
                 <p className="text-xs font-semibold text-gray-500 uppercase">
                   Quick Access
