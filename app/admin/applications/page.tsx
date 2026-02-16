@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import BackButton from "@/components/BackButton";
 
 interface MembershipApplication {
   _id: string;
@@ -70,18 +69,17 @@ export default function MembershipApplicationsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-purple-50 to-blue-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-white to-gold/10 py-8">
       <div className="max-w-6xl mx-auto px-4">
-        <BackButton />
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-600 via-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-gold-dark via-primary to-primary-dark bg-clip-text text-transparent mb-2">
             Membership Applications
           </h1>
           <p className="text-gray-600">View applications submitted via the Join page</p>
         </div>
 
         {error && (
-          <div className="mb-4 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <div className="mb-4 rounded-lg border border-primary/30 bg-primary/5 px-4 py-3 text-sm text-primary">
             {error}
           </div>
         )}
@@ -100,12 +98,17 @@ export default function MembershipApplicationsPage() {
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
                   <div>
                     <h2 className="text-xl font-semibold text-primary">{app.fullName}</h2>
-                    <p className="text-sm text-gray-600">{app.email} • {app.phone}</p>
+                    <p className="text-sm text-gray-600">
+                      {app.email} • {app.phone}
+                    </p>
                   </div>
                   <div className="text-sm text-gray-500 text-right">
                     <p>
-                      Applied on {new Date(app.createdAt).toLocaleDateString()} at {" "}
-                      {new Date(app.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                      Applied on {new Date(app.createdAt).toLocaleDateString()} at{" "}
+                      {new Date(app.createdAt).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
                     </p>
                     <p className="mt-1">
                       Status: <span className="font-medium capitalize">{app.status}</span>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 interface BlogPost {
   _id: string;
@@ -16,6 +17,7 @@ interface BlogPost {
 
 export default function BlogPage() {
   const router = useRouter();
+  const { data: session } = useSession();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -49,6 +51,14 @@ export default function BlogPage() {
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-primary mb-4">Leo Club Blog</h1>
           <p className="text-xl text-gray-600">Stories, updates, and insights from our club</p>
+          {session?.user && (
+            <button
+              onClick={() => router.push('/blog/create')}
+              className="mt-6 inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark font-semibold shadow"
+            >
+              ✍️ Write a Post
+            </button>
+          )}
         </div>
 
         {posts.length === 0 ? (

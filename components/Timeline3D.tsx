@@ -453,9 +453,9 @@ export default function Timeline3D() {
                 >
                   {/* Desktop Layout */}
                   <div className="hidden md:block">
-                    <div className="grid grid-cols-2 items-center gap-x-28">
+                    <div className="grid grid-cols-2 items-center gap-x-12">
                       {/* Left Column */}
-                      <div className={`flex ${isLeft ? 'justify-end pr-24' : 'justify-end pr-24'}`}>
+                      <div className={`flex ${isLeft ? 'justify-end pr-20' : 'justify-end pr-20'}`}>
                         {isLeft && (
                           <div
                             className={`relative flex flex-col w-full max-w-lg bg-white rounded-2xl shadow-lg p-6 border-2 md:min-h-40 transition-all duration-500 transform ${
@@ -512,7 +512,7 @@ export default function Timeline3D() {
                       </div>
 
                       {/* Right Column */}
-                      <div className="flex justify-start pl-32">
+                      <div className="flex justify-start pl-20">
                         {!isLeft && (
                           <div
                             className={`relative flex flex-col w-full max-w-lg bg-white rounded-2xl shadow-lg p-6 border-2 md:min-h-40 transition-all duration-500 transform ${

@@ -9,7 +9,8 @@
     "lint": "next lint",
     "seed": "tsx scripts/seedUsers.ts",
     "import-members": "tsx scripts/importRealMembers.ts",
-    "update-password": "tsx scripts/updateUserPassword.ts"
+    "update-password": "tsx scripts/updateUserPassword.ts",
+    "reset-all-passwords": "tsx scripts/resetAllPasswords.ts"
   },
   "dependencies": {
     "@langchain/core": "^1.1.15",

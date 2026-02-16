@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import BackButton from '@/components/BackButton';
 
 export default function AdminPage() {
   const { data: session, status } = useSession();
@@ -70,12 +69,11 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-purple-50 to-blue-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-white to-gold/10 py-8">
       <div className="max-w-7xl mx-auto px-4">
-        <BackButton />
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-600 via-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-gold-dark via-primary to-primary-dark bg-clip-text text-transparent mb-2">
             Admin Command Center
           </h1>
           <p className="text-gray-600 text-lg">Welcome back, {session?.user?.name}!</p>
@@ -84,35 +82,35 @@ export default function AdminPage() {
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {/* Total Members */}
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
+          <div className="bg-gradient-to-br from-primary to-primary-light rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
             <div className="flex items-center justify-between mb-4">
               <div className="text-3xl font-bold">{stats.totalMembers}</div>
             </div>
-            <div className="text-blue-100 font-semibold">Total Members</div>
+            <div className="text-gold-light font-semibold">Total Members</div>
           </div>
 
           {/* Total Hours */}
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
+          <div className="bg-gradient-to-br from-gold to-gold-dark rounded-xl shadow-lg p-6 text-primary transform hover:scale-105 transition-transform">
             <div className="flex items-center justify-between mb-4">
               <div className="text-3xl font-bold">{stats.totalHours}</div>
             </div>
-            <div className="text-green-100 font-semibold">Service Hours</div>
+            <div className="text-primary font-semibold">Service Hours</div>
           </div>
 
           {/* Total Suggestions */}
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
+          <div className="bg-gradient-to-br from-primary-dark to-primary rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
             <div className="flex items-center justify-between mb-4">
               <div className="text-3xl font-bold">{stats.totalSuggestions}</div>
             </div>
-            <div className="text-purple-100 font-semibold">Project Ideas</div>
+            <div className="text-gold-light font-semibold">Project Ideas</div>
           </div>
 
           {/* Upcoming Events */}
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
+          <div className="bg-gradient-to-br from-gold-dark to-gold rounded-xl shadow-lg p-6 text-primary transform hover:scale-105 transition-transform">
             <div className="flex items-center justify-between mb-4">
               <div className="text-3xl font-bold">{stats.upcomingEvents}</div>
             </div>
-            <div className="text-orange-100 font-semibold">Upcoming Events</div>
+            <div className="text-primary font-semibold">Upcoming Events</div>
           </div>
         </div>
 
@@ -128,7 +126,7 @@ export default function AdminPage() {
 
           {/* Manage Members */}
           <Link href="/members">
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-purple-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-primary">
               <h3 className="text-2xl font-bold text-primary mb-2">Manage Members</h3>
               <p className="text-gray-600">Edit member details and roles</p>
             </div>
@@ -136,7 +134,7 @@ export default function AdminPage() {
 
           {/* Create Account */}
           <Link href="/members/create">
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-orange-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-gold">
               <h3 className="text-2xl font-bold text-primary mb-2">Create Account</h3>
               <p className="text-gray-600">Add new members, officers, or admins</p>
             </div>
@@ -144,7 +142,7 @@ export default function AdminPage() {
 
           {/* Review Suggestions */}
           <Link href="/suggestions">
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-yellow-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-gold">
               <h3 className="text-2xl font-bold text-primary mb-2">Project Ideas</h3>
               <p className="text-gray-600">Review member project suggestions</p>
             </div>
@@ -152,7 +150,7 @@ export default function AdminPage() {
 
           {/* Service Hours */}
           <Link href="/service-hours">
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-red-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-primary-dark">
               <h3 className="text-2xl font-bold text-primary mb-2">Service Hours</h3>
               <p className="text-gray-600">Approve and track service hours</p>
             </div>
@@ -160,7 +158,7 @@ export default function AdminPage() {
 
           {/* Membership Applications */}
           <Link href="/admin/applications">
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-green-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transform hover:scale-[1.02] transition-all cursor-pointer border-2 border-transparent hover:border-gold-dark">
               <h3 className="text-2xl font-bold text-primary mb-2">Membership Applications</h3>
               <p className="text-gray-600">Review applications submitted from the Join page</p>
             </div>
@@ -171,25 +169,25 @@ export default function AdminPage() {
         <div className="mt-8 bg-white rounded-xl shadow-lg p-6">
           <h2 className="text-2xl font-bold text-primary mb-4">Quick Overview</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4">
+            <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-4">
               <p className="text-sm text-gray-600">Average Hours/Member</p>
-              <p className="text-2xl font-bold text-blue-600">
+              <p className="text-2xl font-bold text-primary">
                 {stats.totalMembers > 0 ? (stats.totalHours / stats.totalMembers).toFixed(1) : 0}
               </p>
             </div>
-            <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4">
+            <div className="bg-gradient-to-r from-gold/10 to-gold/20 rounded-lg p-4">
               <p className="text-sm text-gray-600">Ideas per Member</p>
-              <p className="text-2xl font-bold text-green-600">
+              <p className="text-2xl font-bold text-primary">
                 {stats.totalMembers > 0 ? (stats.totalSuggestions / stats.totalMembers).toFixed(1) : 0}
               </p>
             </div>
-            <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-4">
+            <div className="bg-gradient-to-r from-primary/5 to-primary/15 rounded-lg p-4">
               <p className="text-sm text-gray-600">Events This Month</p>
-              <p className="text-2xl font-bold text-purple-600">{stats.upcomingEvents}</p>
+              <p className="text-2xl font-bold text-primary">{stats.upcomingEvents}</p>
             </div>
           </div>
         </div>
-      </div>
+        </div>
     </div>
   );
 }

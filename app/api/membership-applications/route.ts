@@ -3,8 +3,8 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import clientPromise from '@/lib/mongodb';
 
-// Phone must be +94 followed by exactly 8 digits, e.g. +9412345678
-const PHONE_REGEX = /^\+94\d{8}$/;
+// Phone must be +94 followed by exactly 7 digits (local part)
+const PHONE_REGEX = /^\+94\d{7}$/;
 
 export async function POST(req: NextRequest) {
   try {
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
     if (!PHONE_REGEX.test(phone)) {
       return NextResponse.json(
-        { error: 'Phone number must start with +94 and be followed by 8 digits' },
+        { error: 'Phone number must start with +94 and be followed by 7 digits' },
         { status: 400 }
       );
     }

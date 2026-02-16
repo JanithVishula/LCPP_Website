@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AuthProvider from "@/components/AuthProvider";
 import AccessibilityControls from "@/components/AccessibilityControls";
+import { AppShell } from "@/components/AppShell";
 
 const queensides = localFont({
   src: [
@@ -42,9 +43,9 @@ export default function RootLayout({
       <body className={`${queensides.variable} ${queensides.className}`}>
         <AuthProvider>
           <Navbar />
-          <main className="min-h-screen pt-20 relative z-10">
+          <AppShell>
             {children}
-          </main>
+          </AppShell>
           <Footer />
           <AccessibilityControls />
         </AuthProvider>

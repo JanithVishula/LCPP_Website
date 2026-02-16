@@ -72,7 +72,7 @@ export default function Home() {
       <section className="py-12 md:py-20 relative z-10 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            <div className="text-center p-6 md:p-8 bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2">
+            <div className="text-center p-6 md:p-8 bg-white border-2 border-primary rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2">
               <div className="w-14 h-14 md:w-16 md:h-16 bg-gold rounded-full mx-auto mb-3 md:mb-4 flex items-center justify-center">
                 <svg className="w-7 h-7 md:w-8 md:h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -83,7 +83,7 @@ export default function Home() {
                 To provide youth with opportunities for development and contribution to their communities.
               </p>
             </div>
-            <div className="text-center p-6 md:p-8 bg-gradient-to-br from-white to-blue-50 border-2 border-primary rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2">
+            <div className="text-center p-6 md:p-8 bg-white border-2 border-primary rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2">
               <div className="w-14 h-14 md:w-16 md:h-16 bg-gold rounded-full mx-auto mb-3 md:mb-4 flex items-center justify-center">
                 <svg className="w-7 h-7 md:w-8 md:h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -94,7 +94,7 @@ export default function Home() {
                 Engaging in meaningful projects that make a real difference in people's lives.
               </p>
             </div>
-            <div className="text-center p-6 md:p-8 bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2">
+            <div className="text-center p-6 md:p-8 bg-white border-2 border-primary rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-2">
               <div className="w-14 h-14 md:w-16 md:h-16 bg-gold rounded-full mx-auto mb-3 md:mb-4 flex items-center justify-center">
                 <svg className="w-7 h-7 md:w-8 md:h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
@@ -110,7 +110,7 @@ export default function Home() {
       </section>
 
       {/* Our Club Section */}
-      <section className="py-12 md:py-20 bg-gradient-to-b from-white to-blue-50">
+      <section className="py-12 md:py-20 bg-white">
         {/* Full Width Parallax Hero Section */}
         <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] h-[70vh] min-h-[600px] overflow-hidden mb-12">
           <div 
@@ -262,43 +262,63 @@ export default function Home() {
 
             {/* Focus Areas */}
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-primary mb-6 text-center">Our Focus Areas</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
-                      EDU
+              <h3 className="text-2xl md:text-3xl font-bold text-primary mb-3 text-center">Our Focus Areas</h3>
+              <p className="text-sm md:text-base text-primary/80 text-center max-w-3xl mx-auto mb-6 md:mb-8">
+                Four pillars guide everything we do as a club – from planning projects to developing our members.
+              </p>
+              <div className="bg-white/90 rounded-3xl border border-primary/10 shadow-soft p-5 md:p-7 lg:p-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                  <div className="relative bg-white rounded-2xl border border-primary/20 shadow-lg shadow-primary/5 p-5 md:p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-gold/70">
+                    <div className="absolute inset-x-4 top-0 h-1.5 bg-gradient-to-r from-gold via-gold-light to-primary rounded-b-full" />
+                    <div className="relative flex items-center gap-3 mb-3 mt-3">
+                      <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
+                        EDU
+                      </div>
+                      <h4 className="text-lg md:text-xl font-bold text-primary">Education</h4>
                     </div>
-                    <h4 className="text-lg md:text-xl font-bold text-primary">Education</h4>
+                    <p className="relative text-sm md:text-base text-primary/90">
+                      Supporting underprivileged students with school supplies, library donations, and educational programs.
+                    </p>
                   </div>
-                  <p className="text-sm md:text-base text-primary">Supporting underprivileged students with school supplies, library donations, and educational programs.</p>
-                </div>
-                <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
-                      ENV
+
+                  <div className="relative bg-white rounded-2xl border border-primary/20 shadow-lg shadow-primary/5 p-5 md:p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-gold/70">
+                    <div className="absolute inset-x-4 top-0 h-1.5 bg-gradient-to-r from-gold via-gold-light to-primary rounded-b-full" />
+                    <div className="relative flex items-center gap-3 mb-3 mt-3">
+                      <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
+                        ENV
+                      </div>
+                      <h4 className="text-lg md:text-xl font-bold text-primary">Environment</h4>
                     </div>
-                    <h4 className="text-lg md:text-xl font-bold text-primary">Environment</h4>
+                    <p className="relative text-sm md:text-base text-primary/90">
+                      Tree plantation drives, clean-up campaigns, and environmental awareness initiatives.
+                    </p>
                   </div>
-                  <p className="text-sm md:text-base text-primary">Tree plantation drives, clean-up campaigns, and environmental awareness initiatives.</p>
-                </div>
-                <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
-                      COM
+
+                  <div className="relative bg-white rounded-2xl border border-primary/20 shadow-lg shadow-primary/5 p-5 md:p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-gold/70">
+                    <div className="absolute inset-x-4 top-0 h-1.5 bg-gradient-to-r from-gold via-gold-light to-primary rounded-b-full" />
+                    <div className="relative flex items-center gap-3 mb-3 mt-3">
+                      <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
+                        COM
+                      </div>
+                      <h4 className="text-lg md:text-xl font-bold text-primary">Community Service</h4>
                     </div>
-                    <h4 className="text-lg md:text-xl font-bold text-primary">Community Service</h4>
+                    <p className="relative text-sm md:text-base text-primary/90">
+                      Healthcare visits, elderly care, feeding programs, and disaster relief efforts.
+                    </p>
                   </div>
-                  <p className="text-sm md:text-base text-primary">Healthcare visits, elderly care, feeding programs, and disaster relief efforts.</p>
-                </div>
-                <div className="bg-white border-2 border-primary rounded-xl p-5 md:p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
-                      LEAD
+
+                  <div className="relative bg-white rounded-2xl border border-primary/20 shadow-lg shadow-primary/5 p-5 md:p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-gold/70">
+                    <div className="absolute inset-x-4 top-0 h-1.5 bg-gradient-to-r from-gold via-gold-light to-primary rounded-b-full" />
+                    <div className="relative flex items-center gap-3 mb-3 mt-3">
+                      <div className="bg-gold text-primary rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center font-bold text-base md:text-lg flex-shrink-0">
+                        LEAD
+                      </div>
+                      <h4 className="text-lg md:text-xl font-bold text-primary">Leadership Development</h4>
                     </div>
-                    <h4 className="text-lg md:text-xl font-bold text-primary">Leadership Development</h4>
+                    <p className="relative text-sm md:text-base text-primary/90">
+                      Training workshops, personality development programs, and skill-building sessions for youth.
+                    </p>
                   </div>
-                  <p className="text-sm md:text-base text-primary">Training workshops, personality development programs, and skill-building sessions for youth.</p>
                 </div>
               </div>
             </div>

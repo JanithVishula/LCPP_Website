@@ -61,7 +61,7 @@ html.font-xl {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(135deg, #f0f4ff 0%, #e3f2fd 50%, #ffffff 100%);
+  background: #ffffff;
   position: relative;
   overflow-x: hidden;
   font-family: 'Queensides', sans-serif;
@@ -386,7 +386,7 @@ input:focus, textarea:focus, select:focus {
   }
 
   .btn-gold {
-    @apply bg-gradient-to-r from-gold to-yellow-400 hover:from-yellow-400 hover:to-gold text-primary font-bold py-3 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-100;
+    @apply bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-primary font-bold py-3 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-100;
   }
 
   .form-group input,

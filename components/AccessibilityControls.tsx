@@ -59,12 +59,12 @@ export default function AccessibilityControls() {
 
       {/* Controls Panel */}
       {showControls && (
-        <div className="fixed bottom-24 right-6 z-50 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 w-80 animate-scale-in glass">
+        <div className="fixed bottom-24 right-6 z-50 bg-white rounded-2xl shadow-2xl p-6 w-80 animate-scale-in glass">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-bold text-primary dark:text-white">Accessibility</h3>
+            <h3 className="text-lg font-bold text-primary">Accessibility</h3>
             <button
               onClick={() => setShowControls(false)}
-              className="text-gray-500 hover:text-primary transition-colors"
+              className="text-primary/60 hover:text-primary transition-colors"
               aria-label="Close"
             >
               ✕
@@ -73,7 +73,7 @@ export default function AccessibilityControls() {
 
           {/* Theme Toggle */}
           <div className="mb-6">
-            <label className="block text-sm font-bold text-primary dark:text-white mb-3">
+            <label className="block text-sm font-bold text-primary mb-3">
               🌓 Theme
             </label>
             <div className="flex gap-2">
@@ -81,8 +81,8 @@ export default function AccessibilityControls() {
                 onClick={toggleTheme}
                 className={`flex-1 py-3 px-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 ${
                   theme === 'light'
-                    ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-white shadow-lg'
-                    : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-gold to-gold-light text-primary shadow-lg'
+                    : 'bg-gradient-to-r from-primary-dark to-primary text-white shadow-lg'
                 }`}
               >
                 {theme === 'light' ? '☀️ Light' : '🌙 Dark'}
@@ -92,7 +92,7 @@ export default function AccessibilityControls() {
 
           {/* Font Size */}
           <div>
-            <label className="block text-sm font-bold text-primary dark:text-white mb-3">
+            <label className="block text-sm font-bold text-primary mb-3">
               🔤 Font Size
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -101,7 +101,7 @@ export default function AccessibilityControls() {
                 className={`py-2 px-3 rounded-lg font-bold transition-all duration-300 transform hover:scale-105 text-sm ${
                   fontSize === 'small'
                     ? 'bg-primary text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-700 text-primary dark:text-white'
+                    : 'bg-gold/10 text-primary'
                 }`}
               >
                 A
@@ -111,7 +111,7 @@ export default function AccessibilityControls() {
                 className={`py-2 px-3 rounded-lg font-bold transition-all duration-300 transform hover:scale-105 text-base ${
                   fontSize === 'normal'
                     ? 'bg-primary text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-gray-700 text-primary dark:text-white'
+                    : 'bg-gold/10 text-primary'
                 }`}
               >
                 A

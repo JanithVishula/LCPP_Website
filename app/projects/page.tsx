@@ -1,12 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 export default function ProjectsPage() {
   const [activeYear, setActiveYear] = useState('2024-25');
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 50);
+    return () => clearTimeout(timer);
+  }, []);
 
   const openModal = (project: any) => {
     setSelectedProject(project);
@@ -166,7 +172,7 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="bg-white py-12">
+    <div className="bg-gradient-to-br from-blue-50 via-white to-blue-50 py-12">
       <div className="container mx-auto px-4">
         <h1 className="text-4xl font-bold text-primary mb-4 text-center">Our Projects</h1>
         <p className="text-center text-primary mb-12 max-w-2xl mx-auto">
@@ -207,30 +213,40 @@ export default function ProjectsPage() {
           </button>
         </div>
 
-        {/* Projects Tree Layout */}
+        {/* Projects Timeline Layout */}
         <div className="max-w-7xl mx-auto px-4">
           <div className="relative">
-            {/* Tree Trunk Visual */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-2 bg-primary opacity-20 h-full hidden lg:block"></div>
-            
-            {/* Projects as Tree Branches */}
-            <div className="space-y-8">
+            {/* Central Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-primary via-gold to-primary opacity-40 h-full hidden md:block"></div>
+
+            {/* Projects as Timeline Nodes */}
+            <div className="space-y-10">
               {getCurrentProjects().map((project, index) => {
-                // Varying sizes for tree branch effect
-                const sizes = ['col-span-3', 'col-span-2', 'col-span-4', 'col-span-2', 'col-span-3'];
-                const size = sizes[index % sizes.length];
-                const alignments = ['justify-start', 'justify-end', 'justify-start', 'justify-end'];
-                const alignment = alignments[index % alignments.length];
-                
+                const isLeft = index % 2 === 0;
+
                 return (
-                  <div key={project.id} className={`flex ${alignment}`}>
+                  <div
+                    key={project.id}
+                    className={`relative flex ${
+                      isLeft ? 'justify-end pr-4 md:pr-24' : 'justify-start pl-4 md:pl-24'
+                    } transition-all duration-700 ${
+                      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}
+                    style={{ transitionDelay: `${index * 80}ms` }}
+                  >
+                    {/* Center timeline node (desktop) */}
+                    <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0">
+                      <div className="relative w-6 h-6 rounded-full border-4 bg-white border-primary shadow-md">
+                        <div className="absolute inset-1 rounded-full bg-gold"></div>
+                      </div>
+                    </div>
+
+                    {/* Project card */}
                     <div
                       onClick={() => openModal(project)}
-                      className={`cursor-pointer bg-gradient-to-br from-blue-50 to-white border-2 border-primary rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:border-gold p-6 ${
-                        index % 3 === 0 ? 'lg:w-[600px]' : index % 3 === 1 ? 'lg:w-[450px]' : 'lg:w-[500px]'
-                      } w-full max-w-[600px]`}
+                      className="relative z-10 flex flex-col w-full max-w-xl bg-white rounded-2xl shadow-lg p-6 border-2 border-primary/70 md:min-h-40 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:border-gold cursor-pointer"
                     >
-                      <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-3">
                           <div className="w-3 h-3 bg-gold rounded-full"></div>
                           <h2 className="text-xl font-bold text-primary">{project.title}</h2>
@@ -239,9 +255,9 @@ export default function ProjectsPage() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </div>
-                      <p className="text-sm text-primary font-semibold opacity-75 mb-3">{project.date}</p>
-                      <p className="text-gray-700 leading-relaxed line-clamp-3">{project.description}</p>
-                      <div className="mt-4 text-gold font-semibold flex items-center gap-2">
+                      <p className="text-sm text-primary font-semibold opacity-75 mb-2">{project.date}</p>
+                      <p className="text-primary/80 leading-relaxed text-sm md:text-base mb-4">{project.description}</p>
+                      <div className="mt-auto pt-2 text-gold font-semibold flex items-center gap-2">
                         <span>Read More</span>
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />

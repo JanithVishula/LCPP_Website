@@ -50,12 +50,13 @@ export default function LeaderboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-primary mb-8 text-center">
-          🏆 Service Hours Leaderboard
-        </h1>
+      <div className="lg:flex max-w-4xl mx-auto">
+        <div className="flex-1">
+          <h1 className="text-4xl font-bold text-primary mb-8 text-center">
+            🏆 Service Hours Leaderboard
+          </h1>
 
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           {leaderboard.length === 0 ? (
             <div className="p-8 text-center text-gray-500">
               <p className="text-lg">No approved service hours yet</p>
@@ -110,15 +111,16 @@ export default function LeaderboardPage() {
               </table>
             </div>
           )}
-        </div>
+          </div>
 
-        <div className="mt-6 text-center">
-          <button
-            onClick={() => router.back()}
-            className="text-primary hover:text-primary-dark underline"
-          >
-            ← Back to Service Hours
-          </button>
+          <div className="mt-6 text-center">
+            <button
+              onClick={() => router.push('/service-hours')}
+              className="text-primary hover:text-primary-dark underline"
+            >
+              ← Back to Service Hours
+            </button>
+          </div>
         </div>
       </div>
     </div>

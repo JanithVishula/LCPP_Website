@@ -61,20 +61,13 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// POST /api/blog - Create blog post (admin/officer only)
+// POST /api/blog - Create blog post (any logged-in user; member posts stay unpublished until approved)
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    if (session.user.role !== 'admin' && session.user.role !== 'officer') {
-      return NextResponse.json(
-        { error: 'Forbidden - Admin/Officer only' },
-        { status: 403 }
-      );
     }
 
     const body = await request.json();
@@ -105,6 +98,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const isAdminOrOfficer =
+      session.user.role === 'admin' || session.user.role === 'officer';
+
+    const shouldPublish = isAdminOrOfficer && !!published;
+
     const newPost: BlogPost = {
       title,
       slug,
@@ -114,8 +112,9 @@ export async function POST(request: NextRequest) {
       author: new ObjectId(session.user.id),
       authorName: session.user.name || '',
       tags: tags || [],
-      published: published || false,
-      publishedAt: published ? new Date() : undefined,
+      // Members' posts stay unpublished until approved
+      published: shouldPublish,
+      publishedAt: shouldPublish ? new Date() : undefined,
       views: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -135,6 +134,62 @@ export async function POST(request: NextRequest) {
     console.error('Error creating blog post:', error);
     return NextResponse.json(
       { error: 'Failed to create blog post' },
+      { status: 500 }
+    );
+  }
+}
+
+// PATCH /api/blog - Update blog post publish status (admin/officer only)
+export async function PATCH(request: NextRequest) {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    if (session.user.role !== 'admin' && session.user.role !== 'officer') {
+      return NextResponse.json(
+        { error: 'Forbidden - Admin/Officer only' },
+        { status: 403 }
+      );
+    }
+
+    const body = await request.json();
+    const { id, published } = body as { id?: string; published?: boolean };
+
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Missing blog post id' },
+        { status: 400 }
+      );
+    }
+
+    const client = await clientPromise;
+    const db = client.db('leo_club');
+
+    const update: Partial<BlogPost> = {
+      updatedAt: new Date(),
+    } as Partial<BlogPost>;
+
+    if (typeof published === 'boolean') {
+      (update as any).published = published;
+      (update as any).publishedAt = published ? new Date() : undefined;
+    }
+
+    const result = await db
+      .collection<BlogPost>('blog_posts')
+      .updateOne({ _id: new ObjectId(id) }, { $set: update });
+
+    if (result.matchedCount === 0) {
+      return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: 'Blog post updated successfully' });
+  } catch (error) {
+    console.error('Error updating blog post:', error);
+    return NextResponse.json(
+      { error: 'Failed to update blog post' },
       { status: 500 }
     );
   }

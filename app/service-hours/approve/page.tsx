@@ -92,8 +92,9 @@ export default function ApproveHoursPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold text-primary mb-8">Approve Service Hours</h1>
+      <div className="lg:flex max-w-6xl mx-auto">
+        <div className="flex-1">
+          <h1 className="text-4xl font-bold text-primary mb-8">Approve Service Hours</h1>
 
         {hours.length === 0 ? (
           <div className="bg-white rounded-lg shadow p-8 text-center">
@@ -139,11 +140,12 @@ export default function ApproveHoursPage() {
 
         <div className="mt-6 text-center">
           <button
-            onClick={() => router.back()}
+            onClick={() => router.push('/service-hours')}
             className="text-primary hover:text-primary-dark underline"
           >
             ← Back to Service Hours
           </button>
+        </div>
         </div>
       </div>
     </div>
