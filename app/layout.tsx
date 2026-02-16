@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,25 +7,10 @@ import AuthProvider from "@/components/AuthProvider";
 import AccessibilityControls from "@/components/AccessibilityControls";
 import { AppShell } from "@/components/AppShell";
 
-const queensides = localFont({
-  src: [
-    {
-      path: "../public/Fonts/QueensidesLight-ZVj3l.ttf",
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: "../public/Fonts/Queensides-3z7Ey.ttf",
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: "../public/Fonts/QueensidesMedium-x30zV.ttf",
-      weight: '500',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-queensides',
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -40,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${queensides.variable} ${queensides.className}`}>
+      <body className={`${inter.variable} ${inter.className}`}>
         <AuthProvider>
           <Navbar />
           <AppShell>
